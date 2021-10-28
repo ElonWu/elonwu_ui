@@ -20,3 +20,5 @@ export * from '@elonwu/web-popover';
 export * from '@elonwu/web-carousel';
 export * from '@elonwu/web-calendar';
 export * from '@elonwu/web-cascader';
+export * from '@elonwu/web-textarea';
+export * from '@elonwu/web-inputNumber';
