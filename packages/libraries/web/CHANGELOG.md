@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.17](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.4.16...@elonwu/web@0.4.17) (2021-10-28)
+
+
+### Features
+
+* 导出 inputNumber 和 textarea ([a691cbe](https://github.com/ElonWu/elonwu_ui/commit/a691cbe359354a27662211c01f8f57d13e7c2680))
+
+
+
+
+
 ## [0.4.16](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.4.15...@elonwu/web@0.4.16) (2021-10-28)
 
 
