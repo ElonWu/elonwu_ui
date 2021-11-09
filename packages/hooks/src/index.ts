@@ -9,3 +9,4 @@ export * from './useDrop';
 export * from './useMediaQuery';
 export * from './useGsap';
 export * from './useAnim';
+export * from './useDragMove';

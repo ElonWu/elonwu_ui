@@ -1,4 +1,11 @@
-import React, { useMemo, useState, EventHandler, FC } from 'react';
+import React, {
+  useMemo,
+  useState,
+  EventHandler,
+  FC,
+  CSSProperties,
+  MouseEventHandler,
+} from 'react';
 
 import moment, { Moment, MomentInput } from 'moment';
 
@@ -10,6 +17,9 @@ export interface BasicDayFormat {
   date: number;
   mnt: Moment;
   month: Moment;
+  style?: CSSProperties;
+  onClick?: MouseEventHandler;
+  onMouseEnter?: MouseEventHandler;
 }
 
 export interface CalendarProps {
@@ -129,8 +139,13 @@ export const Calendar: FC<CalendarProps> = ({
         }}
         onMouseLeave={onMouseLeaveContainer}
       >
-        {formatDays?.map(({ key, date, ...rest }) => (
-          <Text key={key} className="day" {...rest}>
+        {formatDays?.map(({ key, date, style = {}, ...rest }) => (
+          <Text
+            key={key}
+            className="day"
+            style={{ lineHeight: 1.5, ...style }}
+            {...rest}
+          >
             {date}
           </Text>
         ))}

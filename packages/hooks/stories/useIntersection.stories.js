@@ -9,7 +9,7 @@ export default {
 };
 
 export const UseIntersectionStory = () => {
-  const list = useMemo(() => new Array(20).fill(1).map((_, i) => i), []);
+  const list = useMemo(() => new Array(50).fill(1).map((_, i) => i), []);
 
   const rootRef = useRef();
   const targetRef = useRef();
@@ -18,15 +18,25 @@ export const UseIntersectionStory = () => {
     rootRef, //未指定时默认为 ducument
     targetRef,
     options: {
-      step: 0.05,
-      margin: 16,
+      // step: 0.05,
+      // margin: 16,
+
+      step: 0.01,
+      margin: 8,
     },
   });
 
-  console.log({ ratio });
-
   return (
-    <div>
+    <div
+      style={{
+        width: 'calc(100vw - 32px)',
+        height: 'calc(100vh - 32px)',
+
+        background: `linear-gradient(to top right, #459 ${ratio * 100}%, #945 ${
+          ratio * 100
+        }%)`,
+      }}
+    >
       <Title>
         {visible ? '视野内' : '视野外'}; 可见比例 {formatRound(ratio * 100, 0)}%
       </Title>
@@ -42,23 +52,27 @@ export const UseIntersectionStory = () => {
       >
         滚动至可见
       </Button>
+
       <div
-        ref={rootRef}
+        // ref={rootRef}
         style={{
-          width: 400,
+          // width: 400,
           height: 400,
           overflow: 'auto',
-          padding: 16,
           border: '1px solid #ededed',
         }}
       >
         {list.map((key) => (
-          <Text key={`prev-${key}`}>{key}</Text>
+          // <Text key={`prev-${key}`}>{key}</Text>
+          <div style={{ height: 30 }} key={`prev-${key}`} />
         ))}
 
         <Card
           ref={targetRef}
-          style={{ height: 200, width: 200, background: '#f3f4f5' }}
+          style={{
+            height: 300,
+            width: 300,
+          }}
         />
 
         {list.map((key) => (

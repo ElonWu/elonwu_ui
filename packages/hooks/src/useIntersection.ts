@@ -42,27 +42,27 @@ export const useIntersection = ({
 
     // 初始化监听
     const observer = new IntersectionObserver(
-      debounce(
-        (
-          entries: IntersectionObserverEntry[],
-          observer: IntersectionObserver,
-        ) => {
-          const {
-            intersectionRatio,
-            isIntersecting,
-            target,
-            // boundingClientRect, intersectionRect, rootBounds, time,
-          } = entries[0];
+      // debounce(
+      (
+        entries: IntersectionObserverEntry[],
+        observer: IntersectionObserver,
+      ) => {
+        const {
+          intersectionRatio,
+          isIntersecting,
+          target,
+          // boundingClientRect, intersectionRect, rootBounds, time,
+        } = entries[0];
 
-          // 更新监测结果
-          setObserverResult({
-            visible: isIntersecting,
-            ratio: formatRound(intersectionRatio),
-            target,
-          });
-        },
-        20,
-      ),
+        // 更新监测结果
+        setObserverResult({
+          visible: isIntersecting,
+          ratio: formatRound(intersectionRatio),
+          target,
+        });
+      },
+      // 20,
+      // ),
       {
         root: rootRef?.current || document,
         rootMargin: `${options?.margin || 0}px`,
