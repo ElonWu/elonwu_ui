@@ -1,6 +1,6 @@
 {
   "name": "@elonwu/web",
-  "version": "0.4.20",
+  "version": "0.4.21",
   "description": "elonwu web",
   "source": "index.ts",
   "main": "dist/cjs/index.js",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@elonwu/web-braft": "0.2.1",
     "@elonwu/web-button": "0.0.6",
-    "@elonwu/web-calendar": "0.0.2",
+    "@elonwu/web-calendar": "0.0.3",
     "@elonwu/web-card": "0.0.4",
     "@elonwu/web-carousel": "0.0.2",
     "@elonwu/web-cascader": "0.0.2",
@@ -57,8 +57,8 @@
     "@elonwu/web-loading": "0.0.3",
     "@elonwu/web-menu": "0.0.8",
     "@elonwu/web-popover": "0.0.4",
-    "@elonwu/web-portal": "0.0.12",
-    "@elonwu/web-scroller": "0.0.3",
+    "@elonwu/web-portal": "0.0.13",
+    "@elonwu/web-scroller": "0.0.4",
     "@elonwu/web-select": "0.0.2",
     "@elonwu/web-table": "0.0.8",
     "@elonwu/web-tabs": "0.0.2",
