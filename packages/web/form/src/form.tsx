@@ -256,7 +256,7 @@ const FormItemRenderer = ({
 
 const Label = styled.label(() => {
   return [
-    tw`font-serif font-normal`,
+    tw`font-normal`,
     tw`text-gray-700 dark:text-gray-50`,
     tw`select-none`,
   ];

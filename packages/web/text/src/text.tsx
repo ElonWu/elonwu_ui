@@ -68,8 +68,7 @@ const appendStyle = ({
 
 export const Text = styled.p<TextProps>(({ userSelect, ellipsis, size }) => {
   let styles: (SerializedStyles | TwStyle)[] = [
-    // tw`font-notoSans font-normal`,
-    tw`font-notoSerif font-normal`,
+    tw`font-normal`,
     tw`text-gray-700 dark:text-gray-50`,
     tw`select-none`,
   ];
@@ -81,8 +80,7 @@ export const Text = styled.p<TextProps>(({ userSelect, ellipsis, size }) => {
 
 export const Title = styled.h3<TextProps>(({ userSelect, ellipsis, size }) => {
   let styles: (SerializedStyles | TwStyle)[] = [
-    // tw`font-notoSans font-semibold`,
-    tw`font-notoSerif font-semibold`,
+    tw`font-semibold`,
     tw`text-gray-700 dark:text-gray-50`,
     tw`select-none`,
   ];
@@ -98,8 +96,7 @@ export const Link = styled.a<LinkProps>(
       css`
         text-underline-offset: 0.1em;
       `,
-      // tw`font-notoSans font-normal`,
-      tw`font-notoSerif font-normal`,
+      tw`font-normal`,
       tw`text-primary-300 hover:text-primary-400 active:text-primary-700`,
       tw`dark:text-gray-200 dark:hover:text-gray-50 active:text-gray-300`,
       tw`select-none`,

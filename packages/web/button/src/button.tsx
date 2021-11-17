@@ -33,7 +33,7 @@ export const Button = styled.button<ButtonProps>(
       /* 盒子模型 */
       tw`text-base px-4 py-2 rounded-md`,
       /* 文本 */
-      tw`font-serif select-none`,
+      tw`select-none`,
       /* 切换 theme */
       tw`transition-all`,
       tw`cursor-pointer`,
