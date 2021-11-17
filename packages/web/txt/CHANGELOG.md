@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.1 (2021-11-17)
+
+
+### Features
+
+* 新增 tailwind txt ([bda7864](https://github.com/ElonWu/elonwu_ui/commit/bda786446f35e8c0f580907bc6f5c7ca3c0e5ce6))
+
+
+
+
+
 ## [0.1.3](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-text@0.1.2...@elonwu/web-text@0.1.3) (2021-10-18)
 
 

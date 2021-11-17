@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-text@0.1.3...@elonwu/web-text@0.1.4) (2021-11-17)
+
+
+### Bug Fixes
+
+* 不设定字体 ([7b3cb5b](https://github.com/ElonWu/elonwu_ui/commit/7b3cb5bd17ad3e3491ab562423fbcbcbbf345b8a))
+
+
+
+
+
 ## [0.1.3](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-text@0.1.2...@elonwu/web-text@0.1.3) (2021-10-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@elonwu/web-txt",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "description": "elonwu web-txt",
   "source": "index.ts",

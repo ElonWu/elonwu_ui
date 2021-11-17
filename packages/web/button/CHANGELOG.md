@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-button@0.0.6...@elonwu/web-button@0.0.7) (2021-11-17)
+
+
+### Bug Fixes
+
+* 不设定字体 ([7b3cb5b](https://github.com/ElonWu/elonwu_ui/commit/7b3cb5bd17ad3e3491ab562423fbcbcbbf345b8a))
+* 修改 button story ([02cb941](https://github.com/ElonWu/elonwu_ui/commit/02cb94152385eea22a1503e4f788c401646461a3))
+* 修改 story 分类 ([68a2f25](https://github.com/ElonWu/elonwu_ui/commit/68a2f25202c5bac641b61692cc3993ffebe61362))
+
+
+
+
+
 ## [0.0.6](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-button@0.0.5...@elonwu/web-button@0.0.6) (2021-10-09)
 
 **Note:** Version bump only for package @elonwu/web-button
