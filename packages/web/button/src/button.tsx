@@ -15,10 +15,17 @@ export interface ButtonProps {
   size?: ButtonSize;
   round?: boolean;
   block?: boolean;
+  disabled?: boolean;
 }
 
 export const Button = styled.button<ButtonProps>(
-  ({ type = 'fill', size = 'md', round, block }: ButtonProps): StyleProps => {
+  ({
+    type = 'fill',
+    size = 'md',
+    round,
+    block,
+    disabled,
+  }: ButtonProps): StyleProps => {
     let styles: StyleProps = [
       css`
         appearance: none;
@@ -30,6 +37,8 @@ export const Button = styled.button<ButtonProps>(
       /* 切换 theme */
       tw`transition-all`,
       tw`cursor-pointer`,
+      /* 布局 */
+      tw`grid grid-flow-col gap-0.5	content-center items-center`,
     ];
 
     const sizes: { [key in ButtonSize]: TwStyle } = {
@@ -83,6 +92,10 @@ export const Button = styled.button<ButtonProps>(
 
     if (block) {
       styles = styles.concat(tw`w-full`);
+    }
+
+    if (disabled) {
+      styles = styles.concat(tw`opacity-30 cursor-not-allowed`);
     }
 
     return styles;

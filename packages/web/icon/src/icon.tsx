@@ -15,6 +15,7 @@ export interface IconContainerProps {
   size?: IconSize | number | undefined;
   round?: boolean;
   style?: CSSProperties;
+  interactive?: boolean;
 }
 
 export interface IconProps extends IconContainerProps {
@@ -42,6 +43,7 @@ const IconContainer = styled.span(
     type = 'fill', // 控制配色
     size, // 大小
     round, // 是否圆角
+    interactive = false,
   }: IconContainerProps) => {
     let styles: (SerializedStyles | TwStyle)[] = [
       /* 盒子模型 */
@@ -63,34 +65,46 @@ const IconContainer = styled.span(
       /* 填充 */
       fill: [
         /* 浅色 */
-        tw`bg-primary hover:bg-primary-700`,
-        tw`fill-white hover:fill-gray`,
+        tw`bg-primary`,
+        tw`fill-white`,
 
         /* 深色 */
-        tw`dark:bg-primary-100 dark:hover:bg-gray-100`,
-        tw`dark:fill-primary dark:hover:fill-gray`,
+        tw`dark:bg-primary-100`,
+        tw`dark:fill-primary`,
+
+        interactive
+          ? tw`hover:bg-primary-700 hover:fill-gray dark:hover:bg-gray-100 dark:hover:fill-gray`
+          : tw``,
       ],
 
       /* 描边 */
       outline: [
         /* 浅色 */
-        tw`bg-transparent border border-solid border-primary hover:bg-primary-100`,
-        tw`fill-primary hover:fill-gray`,
+        tw`bg-transparent border border-solid border-primary`,
+        tw`fill-primary`,
 
         /* 深色 */
-        tw`dark:bg-transparent dark:border-primary dark:hover:bg-primary-100`,
-        tw`dark:fill-gray dark:hover:fill-primary`,
+        tw`dark:bg-transparent dark:border-primary`,
+        tw`dark:fill-gray`,
+
+        interactive
+          ? tw`hover:bg-primary-100 hover:fill-gray dark:hover:bg-primary-100 dark:hover:fill-primary`
+          : tw``,
       ],
 
       /* ghost */
       ghost: [
         /* 浅色 */
-        tw`bg-transparent hover:bg-gray-100`,
-        tw`fill-primary hover:fill-light`,
+        tw`bg-transparent`,
+        tw`fill-white`,
 
         /* 深色 */
-        tw`dark:bg-primary-100 dark:hover:bg-gray-100`,
-        tw`dark:fill-gray dark:hover:fill-primary`,
+        tw`dark:bg-primary-100`,
+        tw`dark:fill-gray`,
+
+        interactive
+          ? tw`hover:bg-gray-100 hover:fill-light dark:hover:bg-gray-100 dark:hover:fill-primary`
+          : tw``,
       ],
     };
 

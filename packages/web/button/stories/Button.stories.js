@@ -1,5 +1,8 @@
 import React from 'react';
+import { Icon } from '@elonwu/web-icon';
 import { Button } from '../src';
+
+import icon from './assets/empty.svg';
 
 export default {
   title: 'Components/Base/Button',
@@ -79,6 +82,20 @@ export default {
         },
       },
     },
+    disabled: {
+      name: 'disabled',
+      description: '是否禁用',
+      defaultValue: false,
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
     children: {
       name: 'children',
       description: '按钮文字，可使用其他 ReactElement',
@@ -111,5 +128,11 @@ export default {
 };
 
 export const ButtonStory = (args) => {
-  return <Button {...args} />;
+  return (
+    <Button {...args} onClick={console.log}>
+      <Icon src={icon} type="ghost" />
+      测试
+      <Icon src={icon} type="ghost" />
+    </Button>
+  );
 };
