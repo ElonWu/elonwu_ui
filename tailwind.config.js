@@ -21,13 +21,14 @@ module.exports = {
 
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      // notoSerif: ['-apple-system', 'Noto Serif SC', 'serif'],
+      noto: ['-apple-system', 'Noto Sans SC', 'sans-serif'],
+    },
+
     extend: {
       colors: {
         primary,
-      },
-      fontFamily: {
-        notoSerif: ['-apple-system', 'Noto Serif SC', 'serif'],
-        notoSans: ['-apple-system', 'Noto Sans SC', 'sans-serif'],
       },
     },
 

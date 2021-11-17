@@ -7,7 +7,20 @@ module.exports = {
     '../packages/**/*.stories.mdx',
     '../packages/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    // '@storybook/addon-postcss',
+
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
+  ],
 
   webpackFinal: async (config) => {
     config.resolve.alias = Object.assign({}, config.resolve.alias, {
