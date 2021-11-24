@@ -1,103 +1,85 @@
-import tw, { styled, css, TwStyle } from 'twin.macro';
+import React, { FC, HTMLProps, ReactNode, useMemo } from 'react';
+import cx from 'classnames';
 
-import { SerializedStyles } from '@emotion/cache/node_modules/@emotion/utils';
-/**
- *  Button
- */
+import './index.css';
+import { Icon, IconSize } from '@elonwu/web-icon';
+import loadingIcon from './assets/loading.svg';
 
-export type ButtonType = 'fill' | 'outline' | 'ghost';
-export type ButtonSize = 'lg' | 'md' | 'sm';
+// 按钮变种
+export const ButtonVariants = ['fill', 'outline', 'ghost'];
+export type ButtonVariant = typeof ButtonVariants[number];
 
-export type StyleProps = (SerializedStyles | TwStyle)[];
+// 样式类型
+export const ButtonTypes = ['primary', 'danger', 'info', 'warn', 'success'];
+export type ButtonType = typeof ButtonTypes[number];
 
-export interface ButtonProps {
+// 大小
+export const ButtonSizes = ['xs', 'sm', 'md', 'lg'];
+export type ButtonSize = typeof ButtonSizes[number];
+
+export interface ButtonProps
+  extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
+  variant?: ButtonVariant;
   type?: ButtonType;
   size?: ButtonSize;
-  round?: boolean;
+
+  loading?: boolean;
+  wide?: boolean;
   block?: boolean;
-  disabled?: boolean;
+  square?: boolean; // 相同 padding
+  round?: boolean;
+  icon?: string | ReactNode;
 }
 
-export const Button = styled.button<ButtonProps>(
-  ({
-    type = 'fill',
-    size = 'md',
-    round,
-    block,
-    disabled,
-  }: ButtonProps): StyleProps => {
-    let styles: StyleProps = [
-      css`
-        appearance: none;
-      `,
-      /* 盒子模型 */
-      tw`text-base px-4 py-2 rounded-md`,
-      /* 文本 */
-      tw`select-none`,
-      /* 切换 theme */
-      tw`transition-all`,
-      tw`cursor-pointer`,
-      /* 布局 */
-      tw`grid grid-flow-col gap-0.5	content-center items-center`,
-    ];
+export const Button: FC<ButtonProps> = ({
+  disabled,
+  loading,
+  wide,
+  block,
+  square,
+  round,
+  icon,
+  children,
+  className = '',
+  variant = 'fill',
+  type = 'primary',
+  size = 'md',
+  ...props
+}) => {
+  const cls = useMemo(() => {
+    return cx(
+      {
+        'btn-loading': loading,
+        'btn-wide': wide,
+        'btn-block': block,
+        'btn-square': square,
+        'btn-round': round,
+        [`btn-${variant}`]: variant && ButtonVariants.includes(variant),
+        [`btn-${type}`]: type && ButtonTypes.includes(type),
+        [`btn-${size}`]: size && ButtonSizes.includes(size),
+      },
+      className,
+    );
+  }, [className, loading, type, size, wide, block, square, round, variant]);
 
-    const sizes: { [key in ButtonSize]: TwStyle } = {
-      lg: tw`text-lg px-8 py-3`,
-      md: tw`text-base px-4 py-2 rounded-md`,
-      sm: tw`text-xs px-2 py-1 rounded-sm`,
-    };
+  const iconDom = useMemo(() => {
+    return loading ? (
+      <Icon
+        className="animate-spin"
+        src={loadingIcon}
+        size={size as IconSize}
+      />
+    ) : typeof icon === 'string' ? (
+      <Icon src={icon} size={size as IconSize} />
+    ) : (
+      icon
+    );
+  }, [loading, icon, size]);
 
-    const types: { [key in ButtonType]: TwStyle | StyleProps } = {
-      /* 填充 */
-      fill: [
-        /* 装饰 */
-        tw`border-0 shadow-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-opacity-75`,
-
-        /* 浅色 */
-        tw`bg-primary-500 text-white hover:bg-primary-700`,
-
-        /* 深色 */
-        tw`dark:bg-primary-100 dark:text-primary dark:hover:bg-gray-100`,
-      ],
-
-      /* 描边 */
-      outline: [
-        /* 装饰 */
-        tw`border border-primary-200 shadow-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-opacity-75`,
-
-        /* 浅色 */
-        tw`bg-white text-primary-500 border-solid border-primary-500 hover:bg-primary-100 hover:text-gray-50`,
-
-        /* 深色 */
-        tw`dark:bg-white dark:text-primary-500 dark:border-primary-500 dark:hover:bg-primary-100 dark:hover:text-gray-50`,
-      ],
-
-      /* ghost */
-      ghost: [
-        /* 浅色 */
-        tw`border-0 bg-transparent text-primary-300  hover:bg-gray-100 hover:text-primary-500`,
-
-        /* 深色 */
-        tw`dark:text-white dark:hover:bg-primary-100 dark:hover:text-primary-500`,
-      ],
-    };
-
-    styles = styles.concat(sizes[size] || sizes.md);
-
-    styles = styles.concat(types[type] || types.fill);
-
-    if (round) {
-      styles = styles.concat(tw`rounded-full`);
-    }
-
-    if (block) {
-      styles = styles.concat(tw`w-full`);
-    }
-
-    if (disabled) {
-      styles = styles.concat(tw`opacity-30 cursor-not-allowed`);
-    }
-
-    return styles;
-  },
-);
+  return (
+    <button disabled={disabled || loading} className={`btn ${cls}`} {...props}>
+      {iconDom}
+      {children}
+    </button>
+  );
+};

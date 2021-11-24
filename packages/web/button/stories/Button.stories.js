@@ -1,30 +1,25 @@
 import React from 'react';
-import { Icon } from '@elonwu/web-icon';
-import { Button } from '../src';
 
-import icon from './assets/empty.svg';
+import { Button } from '../src';
 
 export default {
   title: 'Components/Base/Button',
   component: Button,
-
   // 参数值、参数文档
   argTypes: {
-    type: {
-      name: 'type',
+    variant: {
+      name: 'variant',
       description: '按钮类型',
       defaultValue: 'fill',
       options: ['fill', 'outline', 'ghost'],
       control: {
         type: 'select',
-        labels: { fill: '填充', outline: '线框', ghost: '虚拟' },
       },
-
       table: {
         type: {
           summary: 'enum',
           detail: `
-            fill: 填充, outline: 线框, ghost: 虚拟
+            fill, outline, ghost
           `,
         },
         defaultValue: {
@@ -32,25 +27,55 @@ export default {
         },
       },
     },
+    type: {
+      name: 'type',
+      description: '按钮主题',
+      defaultValue: 'primary',
+      options: ['primary', 'danger', 'info', 'warn', 'success'],
+      control: {
+        type: 'select',
+      },
+      table: {
+        type: {
+          summary: 'enum',
+          detail: 'primary; danger; info; warn; success',
+        },
+        defaultValue: {
+          summary: 'primary',
+        },
+      },
+    },
     size: {
       name: 'size',
       description: '按钮大小',
       defaultValue: 'md',
-      options: ['md', 'sm', 'lg'],
+      options: ['xs', 'md', 'sm', 'lg'],
       control: {
         type: 'select',
-        labels: { md: '默认', sm: '小', lg: '大' },
+        labels: { xs: 'xs', md: 'md', sm: 'sm', lg: 'lg' },
       },
 
       table: {
         type: {
           summary: 'enum',
-          detail: `
-            md: 默认, sm: 小, lg: 大
-          `,
+          detail: `xs,md,sm,lg`,
         },
         defaultValue: {
           summary: 'md',
+        },
+      },
+    },
+    wide: {
+      name: 'wide',
+      description: '是否加宽',
+      defaultValue: false,
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
         },
       },
     },
@@ -68,9 +93,37 @@ export default {
         },
       },
     },
+    square: {
+      name: 'square',
+      description: '是否等 padding',
+      defaultValue: false,
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
     block: {
       name: 'block',
       description: '宽度为父容器宽度',
+      defaultValue: false,
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
+    loading: {
+      name: 'loading',
+      description: '是否 loading',
       defaultValue: false,
       control: { type: 'boolean' },
       table: {
@@ -127,12 +180,4 @@ export default {
   },
 };
 
-export const ButtonStory = (args) => {
-  return (
-    <Button {...args} onClick={console.log}>
-      <Icon src={icon} type="ghost" />
-      测试
-      <Icon src={icon} type="ghost" />
-    </Button>
-  );
-};
+export const ButtonStory = (args) => <Button {...args} />;

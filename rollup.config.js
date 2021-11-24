@@ -5,6 +5,10 @@ import json from 'rollup-plugin-json';
 import del from 'rollup-plugin-delete';
 import dts from 'rollup-plugin-dts';
 import styles from 'rollup-plugin-styles';
+import scss from 'rollup-plugin-scss';
+import postcss from 'rollup-plugin-postcss';
+
+import svg from 'rollup-plugin-svg';
 
 export const override = (pkg, callback) => {
   // 打包代码
@@ -19,6 +23,14 @@ export const override = (pkg, callback) => {
       del({ targets: ['dist/*'] }),
       // json
       json(),
+      postcss({
+        plugins: [
+          require('postcss-import'),
+          require('tailwindcss'),
+          require('autoprefixer'),
+        ],
+      }),
+      scss(),
       styles(),
       // jsx
       babel({
@@ -27,14 +39,14 @@ export const override = (pkg, callback) => {
         presets: [
           '@babel/preset-react',
           ['@babel/preset-env', { targets: { node: 'current' } }],
-          '@emotion/babel-preset-css-prop',
         ],
-        plugins: ['@emotion/babel-plugin', 'babel-plugin-macros'],
       }),
       commonjs({
         transformMixedEsModules: true,
         defaultIsModuleExports: 'auto',
       }),
+
+      svg({ base64: true }),
     ],
   };
 
@@ -60,9 +72,7 @@ export const override = (pkg, callback) => {
           '@babel/preset-react',
           ['@babel/preset-env', { targets: { node: 'current' } }],
           '@babel/preset-typescript',
-          '@emotion/babel-preset-css-prop',
         ],
-        plugins: ['@emotion/babel-plugin', 'babel-plugin-macros'],
       }),
 
       commonjs({
@@ -71,16 +81,14 @@ export const override = (pkg, callback) => {
         transformMixedEsModules: true,
         defaultIsModuleExports: 'auto',
       }),
+
+      svg({ base64: true }),
     ],
   };
 
   const dtsConfig = {
     input: pkg.source,
-    output: [
-      { file: pkg.types, format: 'es' },
-      // { file: pkg.main.replace('.js', '.d.ts'), format: 'cjs' },
-      // { file: pkg.module.replace('.js', '.d.ts'), format: 'esm' },
-    ],
+    output: [{ file: pkg.types, format: 'es' }],
     external: Object.keys(pkg.peerDependencies || {}),
     plugins: [
       dts(),

@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: 'Noto';
+    src: url('./assets/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf') format('otf');
+    font-weigth: 400;
+  }
+  @font-face {
+    font-family: 'Noto';
+    src: url('./assets/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf') format('otf');
+    font-weigth: 600;
+  }
+}
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   scroll-behavior: smooth;
 }
 
@@ -16,10 +28,6 @@ body {
   /* font-family: -apple-system serif; */
   font-family: -apple-system, 'Noto Sans SC', sans-serif;
 }
-
-/* ***********
-          滚动条
-      ************ */
 
 *::-webkit-scrollbar {
   width: 2px;
