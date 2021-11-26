@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { notNil } from '@elonwu/utils';
 
@@ -61,4 +61,51 @@ export const useStateWithDelay = function <T>(
       prev,
     },
   ];
+};
+
+export const useToggleWithDelay = (
+  value: boolean,
+  delay: number = 2000,
+): [entering: boolean, leaving: boolean, realVisible: boolean] => {
+  const [prev, setPrev] = useState<boolean>(false);
+
+  const [{ entering, leaving }, setAnimState] = useState({
+    entering: false,
+    leaving: false,
+  });
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (value !== prev) {
+      if (value === true) {
+        setAnimState({
+          entering: true,
+          leaving: false,
+        });
+      } else {
+        setAnimState({
+          entering: false,
+          leaving: true,
+        });
+      }
+
+      timer = setTimeout(() => setPrev(value), delay);
+    } else {
+      setAnimState({
+        entering: false,
+        leaving: false,
+      });
+    }
+
+    return () => clearTimeout(timer);
+  }, [prev, value, delay]);
+
+  const realVisible = useMemo(() => value || entering || leaving, [
+    value,
+    entering,
+    leaving,
+  ]);
+
+  return [entering, leaving, realVisible];
 };

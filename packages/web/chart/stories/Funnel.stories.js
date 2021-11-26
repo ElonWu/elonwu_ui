@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Funnel, Chart } from '../index';
+import { colors10 } from '../src';
 
 export default {
   title: 'Components/Chart/Funnel',
@@ -24,7 +25,7 @@ export const FunnelStory = () => (
         alias: '访问量',
       });
     }}
-    baseColor="#EE6633"
+    baseColor={colors10[0]}
     reverseColor
   />
 );

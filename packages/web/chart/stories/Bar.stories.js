@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { Bar, Chart } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 import { useApi } from '@elonwu/hooks';
 
 export default {
@@ -39,7 +39,7 @@ export const BarStory = () => {
 };
 
 export const MobileBarStory = () => (
-  <Card style={{ width: 275, margin: 'auto' }}>
+  <Box style={{ width: 275, margin: 'auto' }}>
     <Chart
       chartKey="Story-MobileBar"
       dataSource={[
@@ -74,5 +74,5 @@ export const MobileBarStory = () => (
         chart.axis(false);
       }}
     />
-  </Card>
+  </Box>
 );

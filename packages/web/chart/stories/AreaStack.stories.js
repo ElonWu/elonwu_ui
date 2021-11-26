@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { AreaStack } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 
 export default {
   title: 'Components/Chart/AreaStack',
@@ -33,7 +33,7 @@ export const AreaStackStory = () => (
 );
 
 export const MobileAreaStackStory = () => (
-  <Card style={{ width: 275, margin: 'auto' }}>
+  <Box style={{ width: 275, margin: 'auto' }}>
     <AreaStack
       chartKey="Story-MobileAreaStack"
       dataSource={[
@@ -59,5 +59,5 @@ export const MobileAreaStackStory = () => (
         chart.legend(false);
       }}
     />
-  </Card>
+  </Box>
 );

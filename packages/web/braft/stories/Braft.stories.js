@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import { Braft, createEditorState } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 
 export default {
   title: 'Components/Form/Braft',

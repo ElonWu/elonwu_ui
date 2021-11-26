@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { LineGroup, Chart } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 
 export default {
   title: 'Components/Chart/LineGroup',
@@ -33,7 +33,7 @@ export const LineGroupStory = () => (
 );
 
 export const MobileLineStory = () => (
-  <Card style={{ width: 275, margin: 'auto' }}>
+  <Box style={{ width: 275, margin: 'auto' }}>
     <LineGroup
       height={240}
       chartKey="Story-MobileLineGroup"
@@ -59,5 +59,5 @@ export const MobileLineStory = () => (
         chart.axis(false);
       }}
     />
-  </Card>
+  </Box>
 );

@@ -20,7 +20,6 @@ export const LineEnhance = React.forwardRef(
         .style({
           lineCap: 'round',
           lineJoin: 'round',
-
           shadowColor: `${colors10[0]}25`,
           shadowBlur: 4,
           shadowOffsetX: 2,
@@ -32,7 +31,7 @@ export const LineEnhance = React.forwardRef(
         .area()
         .position('x*y')
         .shape('smooth')
-        .color(`l(90) 0:${colors10[0]} 1:${colors10[5]}66`);
+        .color(`l(90) 0:${colors10[0]} 1:${colors10[4]}66`);
 
       // 绘制点图
       chart

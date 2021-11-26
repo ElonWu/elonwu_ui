@@ -3,6 +3,11 @@ export const EmptyArray = [];
 export const EmptyObject = {};
 export const EmptyFunc = () => null;
 
+import _ from 'lodash';
+
+// 对象
+export const isObject = _.isObject;
+
 // 字符串
 export const isString = (value: any): boolean => {
   return typeof value === 'string';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BarGroup, Chart } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 
 export default {
   title: 'Components/Chart/BarGroup',
@@ -33,7 +33,7 @@ export const BarGroupStory = () => (
 );
 
 export const MobileBarGroupStory = () => (
-  <Card style={{ width: 275, margin: 'auto' }}>
+  <Box style={{ width: 275, margin: 'auto' }}>
     <Chart
       height={240}
       chartKey="Story-MobileBarGroup"
@@ -76,5 +76,5 @@ export const MobileBarGroupStory = () => (
         chart.axis(false);
       }}
     />
-  </Card>
+  </Box>
 );

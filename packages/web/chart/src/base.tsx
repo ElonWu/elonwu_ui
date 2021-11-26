@@ -8,12 +8,15 @@ import React, {
 } from 'react';
 import { Chart as G2Chart, registerTheme } from '@antv/g2';
 
-// components
-import { Empty } from '@elonwu/web-empty';
-// import { Loading } from '@elonwu/web-loading';
-
 // utils
 import { isValidArray, isFunction, isArray } from '@elonwu/utils';
+
+// @ts-ignore
+import resolveConfig from 'tailwindcss/resolveConfig';
+// @ts-ignore
+import tailwindConfig from '../tailwind.config';
+
+const fullConfig = resolveConfig(tailwindConfig);
 
 export interface ChartEvents {
   [key: string]: (e: any) => void;
@@ -204,7 +207,7 @@ const useChartUpdate = ({
           line: {
             style: {
               opacity: 0.5,
-              stroke: '#164196',
+              stroke: colors10[0],
               lineDash: [6, 6, 6],
             },
           },
@@ -296,7 +299,7 @@ export const Chart = React.forwardRef(
         )} */}
 
         {/* empty */}
-        {empty && (
+        {/* {empty && (
           <Empty
             style={{
               position: 'absolute',
@@ -306,7 +309,7 @@ export const Chart = React.forwardRef(
               width: '100%',
             }}
           />
-        )}
+        )} */}
 
         {/* chart */}
         <div
@@ -328,52 +331,49 @@ export const Chart = React.forwardRef(
  * 主题配置
  ***************/
 
+const { colors } = fullConfig.theme;
+
 export const textStyle = {
-  fontFamily: `Noto Serif SC, serif`,
+  fontFamily: `Noto, serif`,
   fontSize: 10,
-  fill: '#656D78',
+  fill: colors.gray[500],
 };
 
 export const colors10 = [
-  '#5D9CEC',
-  '#ED5565',
-  '#A0D468',
-  '#FC6E51',
-  '#FFCE54',
-  '#48AFCD',
-  '#48CFAD',
-  '#AC92EC',
-  '#EC87C0',
-  '#656D78',
+  colors.primary[500],
+  colors.red[500],
+  colors.yellow[500],
+  colors.green[500],
+  colors.blue[500],
+  colors.indigo[500],
+  colors.purple[500],
+  colors.pink[500],
+  colors.red[300],
+  colors.yellow[300],
 ];
 
 export const colors20 = [
-  '#5D9CEC',
-  '#ED5565',
-  '#A0D468',
-  '#FC6E51',
-  '#FFCE54',
-  '#48CFAD',
-  '#48AFCD',
-  '#AC92EC',
-  '#EC87C0',
-  '#656D78',
+  colors.primary[500],
+  colors.red[500],
+  colors.yellow[500],
+  colors.green[500],
+  colors.blue[500],
+  colors.indigo[500],
+  colors.purple[500],
+  colors.pink[500],
+  colors.primary[300],
+  colors.red[300],
+  colors.yellow[300],
+  colors.green[300],
+  colors.blue[300],
+  colors.indigo[300],
+  colors.purple[300],
+  colors.pink[300],
 
-  '#4A89DC',
-  '#DA4453',
-  '#8CC152',
-  '#E9573F',
-  '#F6BB42',
-  '#37BC9B',
-  '#4FC1E9',
-  '#967ADC',
-  '#D770AD',
-  '#434A54',
-
-  '#afd0fc',
-  '#ffc6cc',
-  '#e0ffbf',
-  '#dbe4f1',
+  colors.primary[900],
+  colors.red[900],
+  colors.yellow[900],
+  colors.green[900],
 ];
 
 const registerChartTheme = () => {
@@ -381,9 +381,11 @@ const registerChartTheme = () => {
     title: null,
     tickLine: null,
     subTickLine: null,
-    line: { style: { opacity: 0.45, fill: '#434A54' } },
+    line: { style: { opacity: 0.45, fill: colors.gray[500] } },
     grid: {
-      line: { style: { opacity: 0.15, fill: '#434A54', lineDash: [8, 8, 8] } },
+      line: {
+        style: { opacity: 0.15, fill: colors.gray[500], lineDash: [8, 8, 8] },
+      },
     },
     label: {
       style: textStyle,
@@ -398,15 +400,14 @@ const registerChartTheme = () => {
   const annotation = {};
 
   registerTheme('ELonTheme', {
-    defaultColor: '#5D9CEC',
-    subColor: 'rgba(0,0,0,0.05)',
-    semanticRed: '#F4664A',
-    semanticGreen: '#30BF78',
-    fontFamily: `"PingFang SC","Arial",sans-serif`,
+    defaultColor: colors.primary[500],
+    subColor: colors.gray[500],
+    semanticRed: colors.red[500],
+    semanticGreen: colors.green[500],
+    fontFamily: `Noto, serif`,
     padding: 'auto',
 
     minColumnWidth: 2, // 柱状图最小宽度，像素值
-    // maxColumnWidth: 100, // 柱状图最大宽度，像素值
 
     colors10,
     colors20,

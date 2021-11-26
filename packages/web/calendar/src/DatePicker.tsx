@@ -1,67 +1,71 @@
-import React, { useCallback, useEffect, useState, FC } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  FC,
+  CSSProperties,
+} from 'react';
+import cls from 'classnames';
 import moment, { Moment } from 'moment';
 
 import { Calendar, BasicDayFormat } from './Calendar';
+import { useControlled } from '@elonwu/hooks';
 
 export interface DatePickerProps {
   value?: Moment;
   onChange?: (m: Moment) => void;
+  style?: CSSProperties;
 }
 
-export const DatePicker: FC<DatePickerProps> = ({ value, onChange }) => {
-  const [month, setMonth] = useState<Moment>();
-  const [activeDay, selectDay] = useState<Moment>();
+export const DatePicker: FC<DatePickerProps> = (props) => {
+  const [value, onChange] = useControlled<Moment>(props, {
+    initialValue: props?.value || moment(),
+    diff: (local, current) =>
+      !!(current && (!local || !current.isSame(local, 'day'))),
+  });
+
   const [hoveringDay, setHoveringDay] = useState<Moment>();
 
-  useEffect(() => {
-    if (value && activeDay && !value.isSame(activeDay)) {
-      selectDay(moment(value));
-      setMonth(moment(value).startOf('month'));
-    }
-  }, [value, activeDay]);
-
   const format = useCallback(
-    (days) => {
+    (days, month) => {
       return days.map((day: BasicDayFormat) => {
-        const { mnt, month } = day;
+        const { mnt, inMonth } = day;
 
-        const inMonth = mnt.isSame(month, 'month');
-
-        const active = activeDay && mnt.isSame(activeDay, 'day');
+        const active = value && mnt.isSame(value, 'day');
 
         const hover = hoveringDay && mnt.isSame(hoveringDay, 'day');
 
-        const style = {
-          width: 24,
-          height: 24,
-          marginBottom: 4,
-          transition: 'all .25s ease',
-          borderRadius: '50%',
-          textAlign: 'center',
-          cursor: 'pointer',
+        // 非 active 的 hover
+        const onlyHover = !active && hover;
 
-          color: active || hover ? '#fff' : inMonth ? '#444' : '#bbb',
-          background: active ? '#459' : hover ? '#5657aa44' : 'transparent',
-        };
+        // 未交互的，本月的
+        const outRangeInMonth = !(active || hover) && inMonth;
+        // 未交互的, 非本月的
+        const outRangeOutOfMonth = !(active || hover) && !inMonth;
+
+        const className = cls('border rounded-md', {
+          'border-primary-500 text-primary-500 bg-primary-100 dark:bg-gray-50': active,
+          'border-transparent text-primary-500 bg-primary-100 dark:bg-primary-300': onlyHover,
+          'border-transparent text-gray-700 dark:text-gray-50': outRangeInMonth,
+          'border-transparent text-gray-300 bg-transparent dark:text-gray-500': outRangeOutOfMonth,
+        });
 
         return Object.assign({}, day, {
-          style,
-          onClick: () => {
-            selectDay(mnt);
-            onChange && onChange(mnt);
-          },
+          className,
+          onClick: () => onChange(mnt),
           onMouseEnter: () => setHoveringDay(mnt),
         });
       });
     },
-    [activeDay, onChange, hoveringDay],
+    [value, onChange, hoveringDay],
   );
 
   return (
     <Calendar
       format={format}
-      month={month}
-      onMouseLeaveContainer={() => setHoveringDay(undefined)}
+      style={props?.style}
+      initialMonth={moment(value)}
+      onMouseLeave={() => setHoveringDay(undefined)}
     />
   );
 };

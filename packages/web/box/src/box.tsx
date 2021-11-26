@@ -1,4 +1,10 @@
-import React, { FC, HTMLProps, useMemo } from 'react';
+import React, {
+  FC,
+  forwardRef,
+  ForwardRefExoticComponent,
+  HTMLProps,
+  useMemo,
+} from 'react';
 import cx from 'classnames';
 
 import './index.css';
@@ -16,7 +22,7 @@ export const BoxSizes = ['xs', 'sm', 'md', 'lg', 'xs'];
 export type BoxSize = typeof BoxSizes[number];
 
 export interface BoxProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
-  rounded?: boolean;
+  round?: boolean;
   border?: boolean;
   shadow?: boolean;
   block?: boolean;
@@ -25,37 +31,43 @@ export interface BoxProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
   size?: BoxSize;
 }
 
-export const Box: FC<BoxProps> = ({
-  shadow,
-  full,
-  screen,
-  children,
-  className = '',
-  size = 'md',
-  rounded = true,
-  border = true,
-  block = true,
-  ...props
-}) => {
-  const cls = useMemo(() => {
-    return cx(
-      {
-        'box-block': block,
-        'box-full': full,
-        'box-screen': screen,
-        'box-border': border,
-        'box-shadow': shadow,
-        'box-rounded': rounded,
-        'bg-transparent': !className.includes('bg-'),
-        [`box-${size}`]: size && BoxSizes.includes(size),
-      },
-      className,
-    );
-  }, [className, size, block, full, screen, border, shadow, rounded]);
+export const Box = forwardRef<HTMLDivElement, BoxProps>(
+  (
+    {
+      shadow,
+      full,
+      screen,
+      children,
+      className = '',
+      size = 'md',
+      round = true,
+      border = true,
+      block = false,
+      ...props
+    },
+    ref,
+  ) => {
+    const cls = useMemo(() => {
+      return cx(
+        {
+          'box-block': block || full || screen,
+          'inline-block': !(block || full || screen),
+          'box-full': full,
+          'box-screen': screen,
+          'box-border': border,
+          'box-shadow': shadow,
+          'box-rounded': round,
+          'bg-transparent': !className.includes('bg-'),
+          [`box-${size}`]: size && BoxSizes.includes(size),
+        },
+        className,
+      );
+    }, [className, size, block, full, screen, border, shadow, round]);
 
-  return (
-    <div className={`box ${cls}`} {...props}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div ref={ref} className={`box ${cls}`} {...props}>
+        {children}
+      </div>
+    );
+  },
+);

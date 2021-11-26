@@ -17,26 +17,22 @@ export interface IconProps {
 
 export const Icon: FC<IconProps> = ({
   src,
-  size,
+  size = 'md',
   className = '',
-  style = {},
   ...props
 }) => {
   const cls = useMemo(() => {
     return cx(
       {
         [`icon-${size}`]: size && IconSizes.includes(size),
+        'text-current': !className.includes('text-'), // 未主动设置 icon 颜色时
       },
       className,
     );
   }, [size, className]);
 
   return (
-    <span
-      className={`icon ${cls}`}
-      style={{ color: 'inherit', ...style }}
-      {...props}
-    >
+    <span className={`icon ${cls}`} {...props}>
       <SVG src={src} />
     </span>
   );

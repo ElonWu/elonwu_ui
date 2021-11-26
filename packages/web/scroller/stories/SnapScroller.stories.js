@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 import { Title } from '@elonwu/web-text';
 
 import { SnapScroller } from '../src';

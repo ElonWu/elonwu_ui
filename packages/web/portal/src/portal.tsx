@@ -10,6 +10,7 @@ import React, {
 import ReactDOM from 'react-dom';
 
 export interface PortalProps {
+  visible?: boolean;
   container?: HTMLElement;
   className?: string;
   style?: CSSProperties;
@@ -19,6 +20,7 @@ export const Portal: FC<PortalProps> = ({
   children,
   container,
   className,
+  visible = false,
   style = {},
 }) => {
   const [element, setElement] = useState<HTMLElement>();
@@ -38,7 +40,7 @@ export const Portal: FC<PortalProps> = ({
   const addStyle = useCallback(
     (dom: HTMLElement) => {
       dom.style.position = 'absolute';
-      dom.style.width = '100vw';
+      dom.style.width = '100%';
       dom.style.height = '0px';
       dom.style.top = '0px';
       dom.style.left = '0px';
@@ -53,21 +55,36 @@ export const Portal: FC<PortalProps> = ({
   useEffect(() => {
     let targetElement: HTMLElement | undefined = element;
 
-    if (!targetElement) {
-      targetElement = document.createElement('div');
+    if (visible) {
+      if (!targetElement) {
+        targetElement = document.createElement('div');
 
-      setElement(targetElement);
+        setElement(targetElement);
+      }
+
+      addClass(targetElement);
+      addStyle(targetElement);
+
+      // 让容器可定位
+      if (
+        portalContainer !== document.body &&
+        getComputedStyle(portalContainer)?.position === 'static'
+      ) {
+        portalContainer.style.position = 'relative';
+      }
+      portalContainer.appendChild(targetElement);
     }
 
-    addClass(targetElement);
-    addStyle(targetElement);
-
-    portalContainer.appendChild(targetElement);
-
     return () => {
-      if (targetElement) portalContainer.removeChild(targetElement);
+      if (
+        targetElement &&
+        portalContainer &&
+        portalContainer.contains(targetElement)
+      ) {
+        portalContainer.removeChild(targetElement);
+      }
     };
-  }, []);
+  }, [visible]);
 
   return element ? ReactDOM.createPortal(children, element) : null;
 };

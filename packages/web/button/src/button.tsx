@@ -79,7 +79,7 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button disabled={disabled || loading} className={`btn ${cls}`} {...props}>
       {iconDom}
-      {children}
+      {loading ? null : children}
     </button>
   );
 };

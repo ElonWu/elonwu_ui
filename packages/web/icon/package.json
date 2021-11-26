@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ElonWu/elonwu_ui.git",
-    "directory": "packages/web/Icon"
+    "directory": "packages/web/icon"
   },
   "scripts": {
     "build": "rollup --config rollup.config.js",

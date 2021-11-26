@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Line, Chart } from '../src';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 
 export default {
   title: 'Components/Chart/Line',
@@ -24,7 +24,7 @@ export const LineStory = () => (
 );
 
 export const MobileLineStory = () => (
-  <Card style={{ width: 275, margin: 'auto' }}>
+  <Box style={{ width: 275, margin: 'auto' }}>
     <Line
       height={240}
       chartKey="Story-MobileLine"
@@ -42,5 +42,5 @@ export const MobileLineStory = () => (
         chart.axis(false);
       }}
     />
-  </Card>
+  </Box>
 );

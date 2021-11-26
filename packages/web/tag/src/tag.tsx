@@ -38,6 +38,7 @@ export const Tag: FC<TagProps> = ({
         [`tag-${variant}`]: variant && TagVariants.includes(variant),
         [`tag-${type}`]: type && TagTypes.includes(type),
         [`tag-${size}`]: size && TagSizes.includes(size),
+        [`rounded-full`]: !className?.includes('rounded'),
       },
       className,
     );
@@ -51,16 +52,16 @@ export const Tag: FC<TagProps> = ({
     );
   }, [icon, size]);
 
-  const notDot = useMemo(() => variant !== 'dot', [variant]);
+  const notDot = useMemo(() => size !== 'dot', [size]);
 
   return (
     <span className={`tag ${cls}`} {...props}>
-      {notDot && (
+      {notDot ? (
         <>
           {iconDom}
           {children}
         </>
-      )}
+      ) : null}
     </span>
   );
 };

@@ -1,68 +1,48 @@
-import React, {
-  useMemo,
-  useEffect,
-  FC,
-  MutableRefObject,
-  ReactElement,
-  CSSProperties,
-} from 'react';
+import React, { FC, useEffect } from 'react';
 
-import { createContext, TriggerEvent, usePortal } from '@elonwu/hooks';
+import cls from 'classnames';
+import { useControlled, useToggleWithDelay } from '@elonwu/hooks';
 
-import './message.css';
-
-const { Provider, useContext } = createContext('Message');
+import { Alert, AlertType } from '@elonwu/web-alert';
+import { Portal } from './portal';
 
 export interface MessageProps {
-  visible?: boolean;
-  onChange: (visible: boolean) => void;
-  contentStyle?: CSSProperties;
-  overlayStyle?: CSSProperties;
-
-  parentRef?: MutableRefObject<HTMLElement>;
-
-  trigger: ReactElement;
-  triggerEvents?: TriggerEvent[];
+  visible: boolean;
+  onChange?: (visible: boolean) => void;
+  type?: AlertType;
+  message: string;
 }
 
-export const Message: FC<MessageProps> = ({
-  overlayStyle: overrideOverlayStyle,
-  parentRef,
-  children,
-  ...rest
-}) => {
-  const overlayStyle = useMemo(() => {
-    return Object.assign(
-      {
-        display: 'grid',
-        placeContent: 'center',
-        gap: 16,
-        padding: 16,
-      },
-      overrideOverlayStyle,
-    );
-  }, [overrideOverlayStyle]);
-
-  const { visible, onShow, onDismiss, portalContent } = usePortal({
-    portalType: 'Message',
-    content: children,
-    overlayStyle,
-    ...rest,
+export const Message: FC<MessageProps> = ({ type, message, ...props }) => {
+  const [visible, setVisible] = useControlled<boolean>(props, {
+    key: 'visible',
   });
 
+  // 自动关闭
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    let timer: NodeJS.Timeout;
+    if (!!visible) timer = setTimeout(() => setVisible(false), 2000);
+    return () => clearTimeout(timer);
+  }, [visible]);
 
-    if (visible) timer = setTimeout(onDismiss, 2000);
-
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
-  }, [visible, onDismiss]);
+  // 延迟更新 visible， 并据此判断
+  const [entering, leaving, realVisible] = useToggleWithDelay(!!visible, 250);
 
   return (
-    <Provider value={{ visible, onShow, onDismiss }}>{portalContent}</Provider>
+    <Portal visible={realVisible}>
+      <div
+        role="message-container"
+        className="absolute top-4 left-1/2 transform -translate-x-1/2"
+      >
+        <Alert
+          type={type}
+          message={message}
+          className={cls({
+            'animate-slide-in-top': entering,
+            'animate-slide-out-right': leaving,
+          })}
+        />
+      </div>
+    </Portal>
   );
 };
-
-export const useMessage = useContext;

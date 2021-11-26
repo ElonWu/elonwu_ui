@@ -1,5 +1,5 @@
 .tag {
-  @apply inline-flex items-center justify-center rounded-full text-base;
+  @apply inline-flex items-center justify-center text-base;
 }
 
 .tag.tag-md {

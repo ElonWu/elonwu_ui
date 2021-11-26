@@ -1,28 +1,35 @@
-import React, { useCallback, useEffect, useState, FC } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  FC,
+  CSSProperties,
+} from 'react';
+import cls from 'classnames';
 import moment, { Moment } from 'moment';
 
 import { Calendar, BasicDayFormat } from './Calendar';
+import { isNil, notNil } from '@elonwu/utils';
 
 export interface DateRangePickerProps {
   value?: [Moment, Moment];
   onChange?: ([start, end]: [Moment, Moment]) => void;
+  style?: CSSProperties;
 }
 
 export const DateRangePicker: FC<DateRangePickerProps> = ({
   value,
   onChange,
+  style,
 }) => {
-  const [month, setMonth] = useState<Moment>();
-  const [startDay, setStartDay] = useState<Moment>();
-  const [endDay, setEndDay] = useState<Moment>();
+  const [startDay, setStartDay] = useState<Moment | undefined>(value?.[0]);
+  const [endDay, setEndDay] = useState<Moment | undefined>(value?.[1]);
   const [hoveringDay, setHoveringDay] = useState<Moment>();
 
   useEffect(() => {
     if (Array.isArray(value) && value?.length === 2) {
       setStartDay(value[0]);
       setEndDay(value[1]);
-
-      setMonth(moment(value[0]).startOf('month'));
     }
   }, [value]);
 
@@ -48,15 +55,14 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
   );
 
   const format = useCallback(
-    (days) => {
+    (days, month) => {
       return days.map((day: BasicDayFormat) => {
-        const { mnt, month } = day;
-
-        const inMonth = mnt.isSame(month, 'month');
+        const { mnt, inMonth } = day;
 
         let hover = hoveringDay && mnt.isSame(hoveringDay, 'day');
 
         let isStart = startDay && mnt.isSame(startDay, 'day');
+
         let isEnd = endDay && mnt.isSame(endDay, 'day');
 
         let isBetween = false,
@@ -75,35 +81,37 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
           isEnd = next && mnt.isSame(next, 'day');
         }
 
-        const style = {
-          width: '100%',
-          height: 24,
-          marginBottom: 4,
-          transition: 'all .25s ease',
-          borderTopLeftRadius: isStart ? 12 : 0,
-          borderBottomLeftRadius: isStart ? 12 : 0,
+        // 确认被选中
+        const selected = active || (isBetween && notNil(endDay));
 
-          borderTopRightRadius: isEnd ? 12 : 0,
-          borderBottomRightRadius: isEnd ? 12 : 0,
+        // 非 active 的 hover
+        const onlyHover = !selected && hover;
 
-          textAlign: 'center',
-          cursor: 'pointer',
+        // 未决定时的中间值
+        const indeterminedBetween = isBetween && isNil(endDay);
 
-          color:
-            active || isBetween || hover ? '#fff' : inMonth ? '#444' : '#bbb',
-          background: active
-            ? '#459'
-            : isBetween
-            ? endDay
-              ? '#459'
-              : '#5657aa44'
-            : hover
-            ? '#5657aa44'
-            : 'transparent',
-        };
+        // 未交互的，本月的
+        const outRangeInMonth = !(active || hover || isBetween) && inMonth;
+        // 未交互的, 非本月的
+        const outRangeOutOfMonth = !(active || hover || isBetween) && !inMonth;
+
+        const className = cls(
+          {
+            'text-white bg-primary-500': selected,
+            'text-primary-400 bg-primary-100 dark:bg-primary-400 dark:text-gray-50':
+              onlyHover || indeterminedBetween,
+            'text-gray-700 dark:text-gray-50 bg-transparent': outRangeInMonth,
+            'text-gray-300 dark:text-gray-500 bg-transparent': outRangeOutOfMonth,
+          },
+
+          {
+            'rounded-l-md': isStart,
+            'rounded-r-md': isEnd,
+          },
+        );
 
         return Object.assign({}, day, {
-          style,
+          className,
           onClick: () => selectDay(mnt),
           onMouseEnter: () => setHoveringDay(mnt),
         });
@@ -115,8 +123,9 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
   return (
     <Calendar
       format={format}
-      month={month}
-      onMouseLeaveContainer={() => setHoveringDay(undefined)}
+      style={style}
+      initialMonth={moment(value?.[0])?.startOf('month')}
+      onMouseLeave={() => setHoveringDay(undefined)}
     />
   );
 };

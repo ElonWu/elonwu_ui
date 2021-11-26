@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 import { Carousel } from '../src';
 
 export default {

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Chart, ChartRenderer, ChartProps } from './base';
+import { Chart, ChartRenderer, ChartProps, colors10 } from './base';
 
 export const LineGroup = React.forwardRef(
   ({ chartKey, ...props }: ChartProps, ref) => {
@@ -18,7 +18,7 @@ export const LineGroup = React.forwardRef(
           line: {
             style: {
               opacity: 0.5,
-              stroke: '#164196',
+              stroke: colors10[0],
               lineDash: [6, 6, 6],
             },
           },

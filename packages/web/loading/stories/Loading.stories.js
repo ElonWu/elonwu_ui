@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import { Button } from '@elonwu/web-button';
-import { Card } from '@elonwu/web-card';
+import { Box } from '@elonwu/web-box';
 import { Text } from '@elonwu/web-text';
 
 import { Loading } from '../src';
