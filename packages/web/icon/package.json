@@ -1,6 +1,6 @@
 {
   "name": "@elonwu/web-icon",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": false,
   "description": "elonwu web-icon",
   "source": "index.ts",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.4.22...@elonwu/web@0.5.0) (2021-11-27)
+
+**Note:** Version bump only for package @elonwu/web
+
+
+
+
+
 ## [0.4.22](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.4.21...@elonwu/web@0.4.22) (2021-11-17)
 
 **Note:** Version bump only for package @elonwu/web
