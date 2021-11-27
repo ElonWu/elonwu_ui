@@ -1,7 +1,6 @@
 export * from '@elonwu/web-alert';
 export * from '@elonwu/web-box';
 export * from '@elonwu/web-button';
-export * from '@elonwu/web-chart';
 export * from '@elonwu/web-calendar';
 export * from '@elonwu/web-icon';
 export * from '@elonwu/web-icon-button';
