@@ -1,9 +1,24 @@
 import { debounce } from '@elonwu/utils';
 import { formatRound, throttle } from '@elonwu/utils';
 import { MutableRefObject, useCallback, useEffect } from 'react';
-import { Position } from './usePortal';
 
 const { useRef } = require('react');
+
+// 相对锚点的定位
+export type Position =
+  | 'topLeft'
+  | 'top'
+  | 'topRight'
+  | 'leftTop'
+  | 'left'
+  | 'leftBottom'
+  | 'bottomLeft'
+  | 'bottom'
+  | 'bottomRight'
+  | 'rightTop'
+  | 'right'
+  | 'rightBottom'
+  | 'cover';
 
 export interface Vector {
   x: number;

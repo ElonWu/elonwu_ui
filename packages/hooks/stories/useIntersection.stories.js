@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import { Text, Title, Card, Button } from '@elonwu/web';
+import { Box, Button } from '@elonwu/web';
 import { formatRound } from '@elonwu/utils';
 import { useIntersection } from '../src';
 
@@ -37,9 +37,9 @@ export const UseIntersectionStory = () => {
         }%)`,
       }}
     >
-      <Title>
+      <h4>
         {visible ? '视野内' : '视野外'}; 可见比例 {formatRound(ratio * 100, 0)}%
-      </Title>
+      </h4>
 
       <Button
         onClick={() =>
@@ -63,11 +63,11 @@ export const UseIntersectionStory = () => {
         }}
       >
         {list.map((key) => (
-          // <Text key={`prev-${key}`}>{key}</Text>
+          // <p key={`prev-${key}`}>{key}</p>
           <div style={{ height: 30 }} key={`prev-${key}`} />
         ))}
 
-        <Card
+        <Box
           ref={targetRef}
           style={{
             height: 300,
@@ -76,7 +76,7 @@ export const UseIntersectionStory = () => {
         />
 
         {list.map((key) => (
-          <Text key={`next-${key}`}>{key}</Text>
+          <p key={`next-${key}`}>{key}</p>
         ))}
       </div>
     </div>

@@ -47,7 +47,6 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@elonwu/utils": "0.1.4",
     "animejs": "^3.2.1",
     "axios": "^0.21.4",
     "exceljs": "^4.3.0",
@@ -62,9 +61,6 @@
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@rollup/plugin-babel": "^5.3.0",
-    "@types/animejs": "^3.1.4",
-    "@types/react": "^17.0.36",
-    "@types/react-dom": "^17.0.11",
     "autoprefixer": "^9",
     "postcss": "^7",
     "postcss-import": "12",

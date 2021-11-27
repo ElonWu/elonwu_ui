@@ -1,7 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useDrag, useDrop } from '../src';
-import { Title, Card } from '@elonwu/web';
-
 import './dnd.style.css';
 
 export default {
@@ -204,7 +202,7 @@ const Group = ({ group: { key: type, title, list }, setGroups }) => {
       onDragEnter={onDragEnterGroup}
       onDragLeave={onDragLeaveGroup}
     >
-      <Title>{title}</Title>
+      <h4>{title}</h4>
 
       {list.map(({ id, content }) => (
         <DragBox

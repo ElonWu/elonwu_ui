@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Title, Text, Card } from '@elonwu/web';
+import { Box } from '@elonwu/web';
 import { useResize } from '../src';
 
 export default {
@@ -30,7 +30,7 @@ export const UseResizeStory = () => {
         placeItems: 'center',
       }}
     >
-      <Card
+      <Box
         ref={targetRef}
         style={{
           width: '50%',
@@ -44,18 +44,18 @@ export const UseResizeStory = () => {
         }}
         onClick={onScale}
       >
-        <Text style={{ position: 'absolute', top: 8, left: 8 }}>
+        <p style={{ position: 'absolute', top: 8, left: 8 }}>
           ({rect.left},{rect.top})
-        </Text>
+        </p>
 
-        <Text style={{ position: 'absolute', bottom: 8, right: 8 }}>
+        <p style={{ position: 'absolute', bottom: 8, right: 8 }}>
           ({rect.right},{rect.bottom})
-        </Text>
+        </p>
 
-        <Title>
+        <h4>
           {rect.width}*{rect.height}
-        </Title>
-      </Card>
+        </h4>
+      </Box>
     </div>
   );
 };

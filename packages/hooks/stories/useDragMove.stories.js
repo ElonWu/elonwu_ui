@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Card, Text, Toggle } from '@elonwu/web';
+import { Box } from '@elonwu/web';
 import { useDragMove } from '../src';
 
 export default {
@@ -71,14 +71,7 @@ export const UseDragMoveStory = () => {
         placeItems: 'center',
       }}
     >
-      <Toggle
-        type="switch"
-        checkedText="横向"
-        unCheckedText="纵向"
-        value={moveHorizontal}
-        onChange={setMoveHorizontal}
-      />
-      <Card
+      <Box
         ref={targetRef}
         style={{
           width: 320,
@@ -96,67 +89,67 @@ export const UseDragMoveStory = () => {
         <div className="rect" style={rectStyle} />
         {mover ? (
           <>
-            <Card>
-              <Text>
+            <Box>
+              <p>
                 初始位置：(
                 {`${mover?.startPosition?.x},${mover?.startPosition?.y}`})
-              </Text>
-              <Text>
+              </p>
+              <p>
                 初始偏移：(
                 {`${mover?.startOffset?.x},${mover?.startOffset?.y}`})
-              </Text>
-              <Text>
+              </p>
+              <p>
                 初始偏移比：(
                 {`${mover?.startOffsetPercent?.x},${mover?.startOffsetPercent?.y}`}
                 )
-              </Text>
-            </Card>
+              </p>
+            </Box>
 
-            <Card>
-              <Text>
+            <Box>
+              <p>
                 最新位置：(
                 {`${mover?.position?.x},${mover?.position?.y}`})
-              </Text>
-              <Text>
+              </p>
+              <p>
                 最新偏移：(
                 {`${mover?.offset?.x},${mover?.offset?.y}`})
-              </Text>
-              <Text>
+              </p>
+              <p>
                 最新偏移比：(
                 {`${mover?.offsetPercent?.x},${mover?.offsetPercent?.y}`})
-              </Text>
-            </Card>
+              </p>
+            </Box>
 
-            <Card>
-              <Text>
+            <Box>
+              <p>
                 最新速度：(
                 {`${mover?.velocity?.x},${mover?.velocity?.y}`})
-              </Text>
-              <Text>
+              </p>
+              <p>
                 最高速度：(
                 {`${mover?.maxVelocity.x},${mover?.maxVelocity.y}`})
-              </Text>
+              </p>
 
-              <Text>
+              <p>
                 水平最高速度：(
                 {`${mover?.maxVelocityX}`})
-              </Text>
+              </p>
 
-              <Text>
+              <p>
                 垂直最高速度：(
                 {`${mover?.maxVelocityY}`})
-              </Text>
-            </Card>
+              </p>
+            </Box>
 
-            <Card>
-              <Text>
+            <Box>
+              <p>
                 距离初始：(
                 {`${mover?.fromStart?.x},${mover?.fromStart?.y}`})
-              </Text>
-            </Card>
+              </p>
+            </Box>
           </>
         ) : null}
-      </Card>
+      </Box>
     </div>
   );
 };

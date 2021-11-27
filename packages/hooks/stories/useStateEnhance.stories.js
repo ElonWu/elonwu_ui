@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Button, Text, Card } from '@elonwu/web';
+import { Button, Box } from '@elonwu/web';
 import { useStateWithDelay } from '../src';
 
 export default {
@@ -20,10 +20,10 @@ export const UseResizeStory = () => {
         placeItems: 'flex-start',
       }}
     >
-      <Card>prev: {prev}</Card>
-      <Card>curr: {curr}</Card>
-      <Card>next: {next}</Card>
-      <Card>setting: {setting ? '更新中' : '已完成'}</Card>
+      <Box>prev: {prev}</Box>
+      <Box>curr: {curr}</Box>
+      <Box>next: {next}</Box>
+      <Box>setting: {setting ? '更新中' : '已完成'}</Box>
       <Button onClick={() => setCurr(curr + 1)}>Plus</Button>
       <Button onClick={() => setCurr(curr - 2)}>Minus</Button>
     </div>

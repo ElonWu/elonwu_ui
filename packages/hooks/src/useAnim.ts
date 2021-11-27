@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback } from 'react';
+import { useCallback } from 'react';
 import anime from 'animejs';
 
 export const useAnim = (targets: any) => {

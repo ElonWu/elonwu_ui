@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card } from '@elonwu/web';
+import { Box } from '@elonwu/web';
 import { MediaQueryProvider, useMediaQuery } from '../src';
 
 export default {
@@ -19,19 +19,19 @@ export const UseMediaQueryStory = () => {
 
 const Page1 = () => {
   const [isMobile, isTablet] = useMediaQuery();
-  return <Card>isMobile: {isMobile ? 'true' : 'fasle'}</Card>;
+  return <Box>isMobile: {isMobile ? 'true' : 'fasle'}</Box>;
 };
 
 const Page2 = () => {
   const [isMobile, isTablet] = useMediaQuery();
-  return <Card>isTablet: {isTablet ? 'true' : 'fasle'}</Card>;
+  return <Box>isTablet: {isTablet ? 'true' : 'fasle'}</Box>;
 };
 
 const Page3 = () => {
   const [isMobile, isTablet, isPC] = useMediaQuery();
   return (
     <>
-      <Card>isPC: {isPC ? 'true' : 'fasle'}</Card>
+      <Box>isPC: {isPC ? 'true' : 'fasle'}</Box>
       <Page4 />
     </>
   );
@@ -39,5 +39,5 @@ const Page3 = () => {
 
 const Page4 = () => {
   const [isMobile, isTablet, isPC, isWideScreen] = useMediaQuery();
-  return <Card>isWideScreen: {isWideScreen ? 'true' : 'fasle'}</Card>;
+  return <Box>isWideScreen: {isWideScreen ? 'true' : 'fasle'}</Box>;
 };

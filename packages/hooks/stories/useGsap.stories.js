@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import { Title, Text, Card } from '@elonwu/web';
+import { Box } from '@elonwu/web';
 import { useAnimateTo, useAnimateFrom, useTimeline, useAnim } from '../src';
 
 export default {
@@ -105,7 +105,7 @@ export const UseTimelineStory = () => {
         background: '#fcfcfc',
       }}
     >
-      <Card
+      <Box
         style={{
           width: 200,
           height: 200,
@@ -116,9 +116,9 @@ export const UseTimelineStory = () => {
         ref={target2}
       >
         Target2
-      </Card>
+      </Box>
 
-      <Card
+      <Box
         style={{
           width: 200,
           height: 200,
@@ -130,7 +130,7 @@ export const UseTimelineStory = () => {
         onClick={() => timeline.restart()}
       >
         Target1
-      </Card>
+      </Box>
     </div>
   );
 };
@@ -191,7 +191,7 @@ export const UseAnimStory = () => {
         }}
       >
         {list.map((i) => (
-          <Card
+          <Box
             key={i}
             className="card"
             style={{
@@ -235,7 +235,7 @@ export const AnimateListStory = () => {
       }}
     >
       {list.map((i) => (
-        <Card
+        <Box
           key={i}
           className="listItem"
           style={{
