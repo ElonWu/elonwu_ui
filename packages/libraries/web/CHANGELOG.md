@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.5.1...@elonwu/web@0.5.2) (2021-11-27)
+
+
+### Bug Fixes
+
+* 修改 chart 的层级 ([69a2dc5](https://github.com/ElonWu/elonwu_ui/commit/69a2dc5a44e905ec57654c130c83b545f525ac21))
+
+
+
+
+
 ## [0.5.1](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web@0.5.0...@elonwu/web@0.5.1) (2021-11-27)
 
 **Note:** Version bump only for package @elonwu/web
