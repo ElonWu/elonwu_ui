@@ -14,7 +14,7 @@ import { isValidArray, isFunction, isArray } from '@elonwu/utils';
 // @ts-ignore
 import resolveConfig from 'tailwindcss/resolveConfig';
 // @ts-ignore
-import tailwindConfig from '../tailwind.config';
+import * as tailwindConfig from '../tailwind.config';
 
 const fullConfig = resolveConfig(tailwindConfig);
 

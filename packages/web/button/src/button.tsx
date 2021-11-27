@@ -1,4 +1,4 @@
-import React, { FC, HTMLProps, ReactNode, useMemo } from 'react';
+import React, { FC, forwardRef, HTMLProps, ReactNode, useMemo } from 'react';
 import cx from 'classnames';
 
 import './index.css';
@@ -31,55 +31,65 @@ export interface ButtonProps
   icon?: string | ReactNode;
 }
 
-export const Button: FC<ButtonProps> = ({
-  disabled,
-  loading,
-  wide,
-  block,
-  square,
-  round,
-  icon,
-  children,
-  className = '',
-  variant = 'fill',
-  type = 'primary',
-  size = 'md',
-  ...props
-}) => {
-  const cls = useMemo(() => {
-    return cx(
-      {
-        'btn-loading': loading,
-        'btn-wide': wide,
-        'btn-block': block,
-        'btn-square': square,
-        'btn-round': round,
-        [`btn-${variant}`]: variant && ButtonVariants.includes(variant),
-        [`btn-${type}`]: type && ButtonTypes.includes(type),
-        [`btn-${size}`]: size && ButtonSizes.includes(size),
-      },
-      className,
-    );
-  }, [className, loading, type, size, wide, block, square, round, variant]);
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      disabled,
+      loading,
+      wide,
+      block,
+      square,
+      round,
+      icon,
+      children,
+      className = '',
+      variant = 'fill',
+      type = 'primary',
+      size = 'md',
+      ...props
+    },
+    ref,
+  ) => {
+    const cls = useMemo(() => {
+      return cx(
+        {
+          'btn-loading': loading,
+          'btn-wide': wide,
+          'btn-block': block,
+          'btn-square': square,
+          'btn-round': round,
+          [`btn-${variant}`]: variant && ButtonVariants.includes(variant),
+          [`btn-${type}`]: type && ButtonTypes.includes(type),
+          [`btn-${size}`]: size && ButtonSizes.includes(size),
+        },
+        className,
+      );
+    }, [className, loading, type, size, wide, block, square, round, variant]);
 
-  const iconDom = useMemo(() => {
-    return loading ? (
-      <Icon
-        className="animate-spin"
-        src={loadingIcon}
-        size={size as IconSize}
-      />
-    ) : typeof icon === 'string' ? (
-      <Icon src={icon} size={size as IconSize} />
-    ) : (
-      icon
-    );
-  }, [loading, icon, size]);
+    const iconDom = useMemo(() => {
+      return loading ? (
+        <Icon
+          className="animate-spin"
+          src={loadingIcon}
+          size={size as IconSize}
+        />
+      ) : typeof icon === 'string' ? (
+        <Icon src={icon} size={size as IconSize} />
+      ) : (
+        icon
+      );
+    }, [loading, icon, size]);
 
-  return (
-    <button disabled={disabled || loading} className={`btn ${cls}`} {...props}>
-      {iconDom}
-      {loading ? null : children}
-    </button>
-  );
-};
+    return (
+      <button
+        disabled={disabled || loading}
+        className={`btn ${cls}`}
+        {...props}
+        ref={ref}
+      >
+        {iconDom}
+        {loading ? null : children}
+      </button>
+    );
+  },
+);
