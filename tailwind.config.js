@@ -4,7 +4,11 @@ const animationConfig = require('./tailwind.config.animation');
 module.exports = {
   // prefix: 'elon-', // 需将 css 中 apply 的内容手动增加前缀
   // mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    'packages/**/*.{js,jsx,ts,tsx}',
+    './public/index.html',
+  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {

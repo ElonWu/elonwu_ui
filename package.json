@@ -7,8 +7,7 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook",
-    "deploy": "npm run build:storybook && firebase deploy --only hosting",
-    "build-storybook": "build-storybook"
+    "deploy": "npm run build:storybook && firebase deploy --only hosting"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
