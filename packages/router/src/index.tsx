@@ -1,10 +1,4 @@
-import React, {
-  Suspense,
-  Component,
-  ReactNode,
-  LazyExoticComponent,
-  lazy,
-} from 'react';
+import React, { Suspense, Component, ReactNode, lazy, ReactChild } from 'react';
 import { isReactComponent } from '@elonwu/utils';
 import {
   BrowserRouter as Router,
@@ -45,9 +39,10 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
       Outlet
     ) : isReactComponent(component) ? (
       (component as Component)
-    ) : typeof component === 'string' ? (
-      lazy(() => import(component))
     ) : (
+      // : typeof component === 'string' ? (
+      //   lazy(() => import(component))
+      // )
       <></>
     );
 
@@ -58,10 +53,7 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
       element = <Navigate to={redirect} replace />;
     } else {
       element = (
-        <Suspense
-          // fallback={loading as ReactChild}
-          fallback={<div>loading...</div>}
-        >
+        <Suspense fallback={loading as ReactChild}>
           <Page />
         </Suspense>
       );
