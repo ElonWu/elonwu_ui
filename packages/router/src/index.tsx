@@ -19,7 +19,7 @@ export interface ElonRoute {
   title?: string;
   path?: string;
   index?: boolean;
-  component?: Component | string;
+  component?: Component | string | (() => JSX.Element);
   redirect?: string;
   routes?: ElonRoute[];
   inMenu?: boolean;
