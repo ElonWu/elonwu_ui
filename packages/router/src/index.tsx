@@ -1,4 +1,10 @@
-import React, { Suspense, Component, ReactNode, ReactChild } from 'react';
+import React, {
+  Suspense,
+  Component,
+  ReactNode,
+  LazyExoticComponent,
+  lazy,
+} from 'react';
 import { isReactComponent } from '@elonwu/utils';
 import {
   BrowserRouter as Router,
@@ -39,6 +45,8 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
       ? Outlet
       : isReactComponent(component)
       ? (component as Component)
+      : component === 'string'
+      ? lazy(() => import(component))
       : '';
 
     // 渲染 element
@@ -48,7 +56,10 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
       element = <Navigate to={redirect} replace />;
     } else {
       element = (
-        <Suspense fallback={loading as ReactChild}>
+        <Suspense
+          // fallback={loading as ReactChild}
+          fallback={<div>loading...</div>}
+        >
           <Page />
         </Suspense>
       );
