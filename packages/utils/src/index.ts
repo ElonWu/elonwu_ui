@@ -5,3 +5,4 @@ export * from './sessionStorage';
 export * from './localStorage';
 export * from './excel';
 export * from './lodash';
+export * from './react';

@@ -1,4 +1,5 @@
 import React, { Suspense, Component, ReactNode, ReactChild } from 'react';
+import { isReactComponent } from '@elonwu/utils';
 import {
   BrowserRouter as Router,
   Routes,
@@ -33,16 +34,12 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
       routes: nestedRoutes,
     } = route;
 
-    // 直接引入的组件
-    const isReactComponent =
-      component && React.Component.isPrototypeOf(component);
-
     // 当前渲染内容
     const Page: any = !component
       ? Outlet
-      : isReactComponent
+      : isReactComponent(component)
       ? (component as Component)
-      : null;
+      : '';
 
     // 渲染 element
     let element = null;
