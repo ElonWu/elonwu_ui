@@ -47,8 +47,6 @@ export const genRoutesDom = (
       ? (component as Component)
       : null;
 
-    const finalPath = path;
-
     // 渲染 element
     let element = null;
 
@@ -64,8 +62,13 @@ export const genRoutesDom = (
 
     const routeProps = index
       ? { index: true, element } // IndexRouteProps
+      : !path
+      ? {
+          element, // 纯布局
+          children: genRoutesDom(loading, nestedRoutes), // 渲染子路由节点
+        }
       : {
-          path: finalPath,
+          path,
           element,
           children: genRoutesDom(loading, nestedRoutes), // 渲染子路由节点
         }; // PathRouteProps | LayoutRouteProps
@@ -92,3 +95,33 @@ const ElonRouter = ({
 };
 
 export default ElonRouter;
+
+// 官方 Demo
+{
+  /* <Routes>
+  <Route path="/" element={<App />}>
+    <Route index element={<Home />} />
+    <Route path="teams" element={<Teams />}>
+      <Route path=":teamId" element={<Team />} />
+      <Route path=":teamId/edit" element={<EditTeam />} />
+      <Route path="new" element={<NewTeamForm />} />
+      <Route index element={<LeagueStandings />} />
+    </Route>
+  </Route>
+  <Route element={<PageLayout />}>
+    <Route path="/privacy" element={<Privacy />} />
+    <Route path="/tos" element={<Tos />} />
+  </Route>
+  <Route path="contact-us" element={<Contact />} />
+</Routes> */
+}
+
+// /privacy 会构建出如下布局
+
+{
+  /* <App>
+  <PageLayout>
+    <Privacy />
+  </PageLayout>
+</App> */
+}
