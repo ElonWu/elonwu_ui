@@ -41,13 +41,15 @@ const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
     } = route;
 
     // 当前渲染内容
-    const Page: any = !component
-      ? Outlet
-      : isReactComponent(component)
-      ? (component as Component)
-      : component === 'string'
-      ? lazy(() => import(component))
-      : '';
+    const Page: any = !component ? (
+      Outlet
+    ) : isReactComponent(component) ? (
+      (component as Component)
+    ) : typeof component === 'string' ? (
+      lazy(() => import(component))
+    ) : (
+      <></>
+    );
 
     // 渲染 element
     let element = null;
