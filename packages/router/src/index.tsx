@@ -20,10 +20,7 @@ export interface ElonRoute {
 }
 
 // 生成嵌套路由
-export const genRoutesDom = (
-  loading: ReactNode,
-  routes?: ElonRoute[] | null,
-) => {
+const genRoutesDom = (loading: ReactNode, routes?: ElonRoute[] | null) => {
   if (!Array.isArray(routes)) return null;
 
   return routes.map((route) => {
@@ -78,7 +75,7 @@ export const genRoutesDom = (
   });
 };
 
-const ElonRouter = ({
+export const ElonRouter = ({
   rootRoutes,
   loading,
   basename = '/',
@@ -93,8 +90,6 @@ const ElonRouter = ({
     </Router>
   );
 };
-
-export default ElonRouter;
 
 // 官方 Demo
 {
