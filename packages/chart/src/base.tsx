@@ -125,7 +125,6 @@ const setDataMarkers = ({
 
 // 初始化 chart 对象
 const useChart = ({
-  theme,
   chartKey,
   events = {},
   dataSource,
@@ -145,11 +144,10 @@ const useChart = ({
       syncViewPadding: true,
       autoFit: true,
       height: 420,
-      theme: theme === 'dark' ? 'DarkELonTheme' : 'ELonTheme',
       ...rest,
     });
     chartRef.current = chart;
-  }, [theme]);
+  }, []);
 
   // 事件绑定
   useEffect(() => {
@@ -224,12 +222,15 @@ const useChartUpdate = ({
       // 添加 dataMarker
       await setDataMarkers({ chart, dataMarkers, source });
 
+      // 更新主题，目前只有 light dark
+      if (theme) chart.theme(theme);
+
       chart.render();
       chart.forceFit();
     };
 
     onUpdate();
-  }, [chartRef, source, configChart, dataMarkers]);
+  }, [theme, chartRef, source, configChart, dataMarkers]);
 };
 
 // dom 渲染 chart
@@ -245,7 +246,7 @@ export const Chart = React.forwardRef(
       setConfig,
 
       dataMarkers,
-      theme,
+      theme = 'light',
 
       events = {},
       height = 320,
@@ -293,9 +294,9 @@ export const Chart = React.forwardRef(
         ref={ref as Ref<HTMLDivElement>}
         style={{
           display: 'grid',
-          placeItems: 'center',
+          placeContent: 'center',
           height,
-          opacity: empty ? 0 : 1,
+          // opacity: empty ? 0 : 1,
         }}
       />
     );

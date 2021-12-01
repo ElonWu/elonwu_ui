@@ -236,7 +236,7 @@ export const annotation = {};
 export const darkAnnotation = {};
 
 export const registerChartTheme = () => {
-  registerTheme('ELonTheme', {
+  registerTheme('light', {
     defaultColor: colors.primary[400],
     subColor: colors.blue[400],
     semanticRed: colors.red[400],
@@ -263,7 +263,7 @@ export const registerChartTheme = () => {
     },
   });
 
-  registerTheme('DarkELonTheme', {
+  registerTheme('dark', {
     defaultColor: colors.primary[400],
     subColor: colors.blue[400],
     semanticRed: colors.red[400],
