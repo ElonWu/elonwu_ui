@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-import { Chart, ChartRenderer, ChartProps, colors10 } from './base';
+import { Chart, ChartRenderer, ChartProps } from './base';
+import { colors10 } from './theme';
 
 export const LineGroup = React.forwardRef(
   ({ chartKey, ...props }: ChartProps, ref) => {

@@ -1,13 +1,8 @@
 import React, { useCallback } from 'react';
 import { registerShape } from '@antv/g2';
 
-import {
-  Chart,
-  ChartRenderer,
-  ChartProps,
-  ArrayChartItem,
-  textStyle,
-} from './base';
+import { Chart, ChartRenderer, ChartProps, ArrayChartItem } from './base';
+import { textStyle } from './theme';
 import { isArray } from '@elonwu/utils';
 
 export const Pie = React.forwardRef(
@@ -76,7 +71,7 @@ export const Pie = React.forwardRef(
         .label('x', () => ({
           content: ({ x, y, format = '' }) =>
             `${x}${format ? ':' + format : ''}`,
-          style: textStyle,
+          // style: textStyle,
         }))
         .style({ stroke: 'transparent', strokeWidth: 10 })
         .shape(source.length > 2 ? 'slicePie' : 'pie')

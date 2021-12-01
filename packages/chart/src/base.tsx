@@ -6,17 +6,11 @@ import React, {
   MutableRefObject,
   Ref,
 } from 'react';
-import { Chart as G2Chart, registerTheme } from '@antv/g2';
+import { Chart as G2Chart } from '@antv/g2';
 
 // utils
 import { isValidArray, isFunction, isArray } from '@elonwu/utils';
-
-// @ts-ignore
-import resolveConfig from 'tailwindcss/resolveConfig';
-// @ts-ignore
-import * as tailwindConfig from '../tailwind.config';
-
-const twConfig = resolveConfig(tailwindConfig);
+import { colors10, registerChartTheme } from './theme';
 
 export interface ChartEvents {
   [key: string]: (e: any) => void;
@@ -57,6 +51,7 @@ export interface UseChartProps {
   dataSource: any;
   width?: number;
   height?: number;
+  theme?: 'light' | 'dark';
 }
 
 export interface UseChartUpdateProps {
@@ -127,6 +122,7 @@ const setDataMarkers = ({
 
 // 初始化 chart 对象
 const useChart = ({
+  theme = 'light',
   chartKey,
   events = {},
   dataSource,
@@ -141,16 +137,16 @@ const useChart = ({
     registerChartTheme();
 
     const chart = new G2Chart({
-      container: `Chart-${chartKey}`,
+      container: `ElonChart-${chartKey}`,
       appendPadding: 8,
       syncViewPadding: true,
       autoFit: true,
       height: 420,
-      theme: 'ELonTheme',
+      theme: theme === 'dark' ? 'DarkELonTheme' : 'ELonTheme',
       ...rest,
     });
     chartRef.current = chart;
-  }, []);
+  }, [theme]);
 
   // 事件绑定
   useEffect(() => {
@@ -284,145 +280,16 @@ export const Chart = React.forwardRef(
 
     // 实际渲染的 DOM
     return (
-      <div style={{ position: 'relative' }}>
-        {/* loading */}
-        {/* {loading && (
-          <Loading
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              height: '100%',
-              width: '100%',
-            }}
-          />
-        )} */}
-
-        {/* empty */}
-        {/* {empty && (
-          <Empty
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              height: '100%',
-              width: '100%',
-            }}
-          />
-        )} */}
-
-        {/* chart */}
-        <div
-          id={`Chart-${chartKey}`}
-          ref={ref as Ref<HTMLDivElement>}
-          style={{
-            display: 'grid',
-            placeItems: 'center',
-            height,
-            opacity: empty ? 0 : 1,
-          }}
-        />
-      </div>
+      <div
+        id={`ElonChart-${chartKey}`}
+        ref={ref as Ref<HTMLDivElement>}
+        style={{
+          display: 'grid',
+          placeItems: 'center',
+          height,
+          opacity: empty ? 0 : 1,
+        }}
+      />
     );
   },
 );
-
-/**************
- * 主题配置
- ***************/
-
-const { colors } = twConfig.theme;
-
-export const textStyle = {
-  fontFamily: `Noto, serif`,
-  fontSize: 10,
-  fill: colors.gray[500],
-};
-
-export const colors10 = [
-  colors.primary[500],
-  colors.red[500],
-  colors.yellow[500],
-  colors.green[500],
-  colors.blue[500],
-  colors.indigo[500],
-  colors.purple[500],
-  colors.pink[500],
-  colors.red[300],
-  colors.yellow[300],
-];
-
-export const colors20 = [
-  colors.primary[500],
-  colors.red[500],
-  colors.yellow[500],
-  colors.green[500],
-  colors.blue[500],
-  colors.indigo[500],
-  colors.purple[500],
-  colors.pink[500],
-  colors.primary[300],
-  colors.red[300],
-  colors.yellow[300],
-  colors.green[300],
-  colors.blue[300],
-  colors.indigo[300],
-  colors.purple[300],
-  colors.pink[300],
-
-  colors.primary[900],
-  colors.red[900],
-  colors.yellow[900],
-  colors.green[900],
-];
-
-const registerChartTheme = () => {
-  const axis = {
-    title: null,
-    tickLine: null,
-    subTickLine: null,
-    line: { style: { opacity: 0.45, fill: colors.gray[500] } },
-    grid: {
-      line: {
-        style: { opacity: 0.15, fill: colors.gray[500], lineDash: [8, 8, 8] },
-      },
-    },
-    label: {
-      style: textStyle,
-    },
-  };
-
-  const legend = {
-    title: { style: textStyle },
-    itemName: { spacing: 8, style: { ...textStyle, lineHeight: 1.5 } },
-  };
-  const tooltip = {};
-  const annotation = {};
-
-  registerTheme('ELonTheme', {
-    defaultColor: colors.primary[500],
-    subColor: colors.gray[500],
-    semanticRed: colors.red[500],
-    semanticGreen: colors.green[500],
-    fontFamily: `Noto, serif`,
-    padding: 'auto',
-
-    minColumnWidth: 2, // 柱状图最小宽度，像素值
-
-    colors10,
-    colors20,
-
-    labels: {
-      style: textStyle,
-    },
-    pieLabels: {
-      style: textStyle,
-    },
-    components: {
-      axis: { common: axis },
-      legend: { common: legend },
-      tooltip: { common: tooltip },
-      annotation: { common: annotation },
-    },
-  });
-};

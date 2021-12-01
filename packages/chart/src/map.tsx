@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import DataSet from '@antv/data-set';
 
-import { Chart, ChartRenderer, ChartProps, colors20 } from './base';
+import { Chart, ChartRenderer, ChartProps } from './base';
+import { colors20 } from './theme';
 
 import { isNil, Request } from '@elonwu/utils';
 import { useApi } from '@elonwu/hooks';

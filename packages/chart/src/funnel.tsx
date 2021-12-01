@@ -3,6 +3,7 @@ import DataSet from '@antv/data-set';
 
 import { Chart, ChartRenderer, ChartProps } from './base';
 import { notNil } from '@elonwu/utils';
+import { colors10 } from './theme';
 
 export const Funnel = React.forwardRef(
   (
@@ -111,7 +112,7 @@ export const Funnel = React.forwardRef(
   },
 );
 
-const genColors = (length = 1, reverse = false, baseColor = '#1559B7') => {
+const genColors = (length = 1, reverse = false, baseColor = colors10[0]) => {
   const color = baseColor;
 
   let result = [color];
@@ -121,8 +122,17 @@ const genColors = (length = 1, reverse = false, baseColor = '#1559B7') => {
   const a = (255 - b) / Math.pow(length + 1, 2);
 
   for (let i = 1; i < length; i++) {
+    // 颜色 16 进制
+    // const opacity = Math.floor(255 - (a * Math.pow(i, 2) + b));
+    // result.push(`${color}${opacity.toString(16)}`);
+
+    // 颜色 rgb
     const opacity = Math.floor(255 - (a * Math.pow(i, 2) + b));
-    result.push(`${color}${opacity.toString(16)}`);
+    const insert = color
+      .replace(')', `,${opacity / 255})`)
+      .replace('rgb', 'rgba');
+
+    result.push(insert);
   }
 
   return reverse ? result.reverse() : result;
