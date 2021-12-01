@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.3...@elonwu/web-chart@0.3.4) (2021-12-01)
+
+
+### Bug Fixes
+
+* 更新图表主题色彩 ([5f6c4d5](https://github.com/ElonWu/elonwu_ui/commit/5f6c4d56acab1a746e4f9df66bda8bca44d297c0))
+
+
+
+
+
 ## [0.3.3](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.2...@elonwu/web-chart@0.3.3) (2021-12-01)
 
 
