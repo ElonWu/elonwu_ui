@@ -1,6 +1,6 @@
 {
   "name": "@elonwu/router",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": false,
   "description": "elonwu router",
   "source": "index.ts",

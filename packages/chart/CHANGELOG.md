@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.1...@elonwu/web-chart@0.3.2) (2021-12-01)
+
+
+### Bug Fixes
+
+* chart rebuild ([344b47d](https://github.com/ElonWu/elonwu_ui/commit/344b47d74a265f052f41ad410279f83b8b25a786))
+
+
+
+
+
 ## [0.3.1](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.0...@elonwu/web-chart@0.3.1) (2021-11-27)
 
 
