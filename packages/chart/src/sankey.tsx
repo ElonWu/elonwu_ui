@@ -5,6 +5,8 @@ import { StyleCallback } from '@antv/g2/lib/interface';
 import { Chart, ChartRenderer, ChartProps } from './base';
 
 import { isFunction, EmptyObject } from '@elonwu/utils';
+import { colors10 } from './theme';
+import { colors } from '.';
 
 const defaultStyle = () => EmptyObject;
 
@@ -88,7 +90,7 @@ export const Sankey = React.forwardRef(
           const isLast = x[1] === 1;
           return {
             style: {
-              fill: '#545454',
+              fill: colors.gray[50],
               textAlign: isLast ? 'end' : 'start',
             },
             offsetX: isLast ? -8 : 8,

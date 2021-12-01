@@ -10,7 +10,7 @@ import { Chart as G2Chart } from '@antv/g2';
 
 // utils
 import { isValidArray, isFunction, isArray } from '@elonwu/utils';
-import { colors10, registerChartTheme } from './theme';
+import { colors10, registerChartTheme, colors } from './theme';
 
 export interface ChartEvents {
   [key: string]: (e: any) => void;
@@ -43,6 +43,8 @@ export interface ChartProps {
   width?: number;
   height?: number;
   dataMarkers?: DataMarker[];
+
+  theme?: 'light' | 'dark';
 }
 
 export interface UseChartProps {
@@ -60,6 +62,7 @@ export interface UseChartUpdateProps {
   setConfig?: ChartRenderer;
   configChart?: ChartRenderer;
   dataMarkers?: DataMarker[];
+  theme?: 'light' | 'dark';
 }
 
 export interface DataMarker {
@@ -122,7 +125,7 @@ const setDataMarkers = ({
 
 // 初始化 chart 对象
 const useChart = ({
-  theme = 'light',
+  theme,
   chartKey,
   events = {},
   dataSource,
@@ -186,6 +189,7 @@ const useChartUpdate = ({
   setConfig,
   dataMarkers,
   configChart,
+  theme,
 }: UseChartUpdateProps) => {
   useEffect(() => {
     const chart = chartRef?.current;
@@ -203,7 +207,7 @@ const useChartUpdate = ({
           line: {
             style: {
               opacity: 0.5,
-              stroke: colors10[0],
+              stroke: theme === 'dark' ? colors.gray[50] : colors10[0],
               lineDash: [6, 6, 6],
             },
           },
@@ -241,6 +245,8 @@ export const Chart = React.forwardRef(
       setConfig,
 
       dataMarkers,
+      theme,
+
       events = {},
       height = 320,
     }: ChartProps,
@@ -267,6 +273,7 @@ export const Chart = React.forwardRef(
       events,
       dataSource,
       height,
+      theme,
     });
 
     // 更新渲染
@@ -276,6 +283,7 @@ export const Chart = React.forwardRef(
       configChart: overrideConfigChart || configChart,
       setConfig,
       dataMarkers,
+      theme,
     });
 
     // 实际渲染的 DOM

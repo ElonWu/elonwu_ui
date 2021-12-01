@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { colors } from '.';
 
 import { Chart, ChartRenderer, ChartProps } from './base';
 import { colors10 } from './theme';
@@ -32,7 +33,7 @@ export const LineEnhance = React.forwardRef(
         .area()
         .position('x*y')
         .shape('smooth')
-        .color(`l(90) 0:${colors10[0]} 1:${colors10[4]}66`);
+        .color(`l(90) 0:${colors.primary[400]} 1:${colors.blue[400]}66`);
 
       // 绘制点图
       chart

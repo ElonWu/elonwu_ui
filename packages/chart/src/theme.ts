@@ -3,7 +3,7 @@ import { registerTheme } from '@antv/g2';
 /**************
  * 主题配置
  ***************/
-const colors = {
+export const colors = {
   primary: {
     50: 'rgb(236, 239, 248)',
     100: 'rgb(209, 216, 240)',
@@ -112,6 +112,30 @@ const colors = {
     800: 'rgb(54, 28, 138)',
     900: 'rgb(40, 20, 117)',
   },
+  amber: {
+    50: 'rgb(254, 251, 235)',
+    100: 'rgb(252, 245, 206)',
+    200: 'rgb(249, 232, 158)',
+    300: 'rgb(246, 216, 111)',
+    400: 'rgb(243, 198, 65)',
+    500: 'rgb(240, 177, 20)',
+    600: 'rgb(200, 138, 15)',
+    700: 'rgb(160, 102, 10)',
+    800: 'rgb(120, 70, 6)',
+    900: 'rgb(80, 43, 3)',
+  },
+  lightGreen: {
+    50: 'rgb(243, 248, 236)',
+    100: 'rgb(227, 240, 208)',
+    200: 'rgb(200, 226, 165)',
+    300: 'rgb(173, 211, 126)',
+    400: 'rgb(147, 197, 91)',
+    500: 'rgb(123, 182, 60)',
+    600: 'rgb(100, 152, 48)',
+    700: 'rgb(78, 121, 38)',
+    800: 'rgb(57, 91, 27)',
+    900: 'rgb(37, 61, 18)',
+  },
 };
 
 export const fontFamily = `Noto Serif SC, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif`;
@@ -132,40 +156,37 @@ export const darkTextStyle = {
 };
 
 export const colors10 = [
-  colors.primary[500],
-  colors.red[500],
-  colors.yellow[500],
-  colors.green[500],
-  colors.blue[500],
-  colors.indigo[500],
-  colors.purple[500],
-  colors.pink[500],
-  colors.red[300],
-  colors.yellow[300],
+  colors.blue[400],
+  colors.green[400],
+  colors.yellow[400],
+  colors.indigo[400],
+  colors.red[400],
+  colors.purple[400],
+  colors.lightGreen[400],
+  colors.pink[400],
+  colors.amber[400],
 ];
 
 export const colors20 = [
-  colors.primary[500],
-  colors.red[500],
-  colors.yellow[500],
-  colors.green[500],
-  colors.blue[500],
-  colors.indigo[500],
-  colors.purple[500],
-  colors.pink[500],
-  colors.primary[300],
-  colors.red[300],
-  colors.yellow[300],
-  colors.green[300],
+  colors.blue[400],
+  colors.green[400],
+  colors.yellow[400],
+  colors.indigo[400],
+  colors.red[400],
+  colors.purple[400],
+  colors.lightGreen[400],
+  colors.pink[400],
+  colors.amber[400],
+
   colors.blue[300],
+  colors.green[300],
   colors.indigo[300],
   colors.purple[300],
+  colors.lightGreen[300],
+  colors.yellow[300],
+  colors.red[300],
   colors.pink[300],
-
-  colors.primary[900],
-  colors.red[900],
-  colors.yellow[900],
-  colors.green[900],
+  colors.amber[300],
 ];
 
 export const axis = {
@@ -187,14 +208,14 @@ export const darkAxis = {
   title: null,
   tickLine: null,
   subTickLine: null,
-  line: { style: { opacity: 0.45, fill: darkFillColor } },
+  line: { style: { opacity: 0.45, stroke: darkFillColor } },
   grid: {
     line: {
-      style: { opacity: 0.15, fill: darkFillColor, lineDash: [8, 8, 8] },
+      style: { opacity: 0.15, stroke: darkFillColor, lineDash: [8, 8, 8] },
     },
   },
   label: {
-    style: textStyle,
+    style: darkTextStyle,
   },
 };
 
@@ -216,10 +237,10 @@ export const darkAnnotation = {};
 
 export const registerChartTheme = () => {
   registerTheme('ELonTheme', {
-    defaultColor: colors.primary[500],
-    subColor: colors.blue[500],
-    semanticRed: colors.red[500],
-    semanticGreen: colors.green[500],
+    defaultColor: colors.primary[400],
+    subColor: colors.blue[400],
+    semanticRed: colors.red[400],
+    semanticGreen: colors.green[400],
     fontFamily,
     padding: 'auto',
 
@@ -243,10 +264,10 @@ export const registerChartTheme = () => {
   });
 
   registerTheme('DarkELonTheme', {
-    defaultColor: colors.primary[500],
-    subColor: colors.blue[500],
-    semanticRed: colors.red[500],
-    semanticGreen: colors.green[500],
+    defaultColor: colors.primary[400],
+    subColor: colors.blue[400],
+    semanticRed: colors.red[400],
+    semanticGreen: colors.green[400],
     fontFamily,
     padding: 'auto',
 

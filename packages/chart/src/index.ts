@@ -1,5 +1,6 @@
 export * from './areaStack';
 export * from './bar';
+export * from './point';
 export * from './barGroup';
 export * from './barStack';
 export * from './sankey';

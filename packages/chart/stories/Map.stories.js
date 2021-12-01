@@ -9,7 +9,7 @@ export default {
 export const MapByRegionStory = () => (
   <Map
     chartKey="Story-Map-ByRegion-China"
-    height={500}
+    height={800}
     locateType="REGION"
     // locateType="LNGLAT"
     mapType="china-provinces"
