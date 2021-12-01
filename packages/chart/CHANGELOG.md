@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.4...@elonwu/web-chart@0.3.5) (2021-12-01)
+
+
+### Features
+
+* 动态刷新主题 ([5d5bd71](https://github.com/ElonWu/elonwu_ui/commit/5d5bd710454e2b3974c972035b23000296e5f747))
+
+
+
+
+
 ## [0.3.4](https://github.com/ElonWu/elonwu_ui/compare/@elonwu/web-chart@0.3.3...@elonwu/web-chart@0.3.4) (2021-12-01)
 
 
