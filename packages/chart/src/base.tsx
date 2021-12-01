@@ -16,7 +16,7 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 // @ts-ignore
 import * as tailwindConfig from '../tailwind.config';
 
-const fullConfig = resolveConfig(tailwindConfig);
+const twConfig = resolveConfig(tailwindConfig);
 
 export interface ChartEvents {
   [key: string]: (e: any) => void;
@@ -331,7 +331,7 @@ export const Chart = React.forwardRef(
  * 主题配置
  ***************/
 
-const { colors } = fullConfig.theme;
+const { colors } = twConfig.theme;
 
 export const textStyle = {
   fontFamily: `Noto, serif`,
