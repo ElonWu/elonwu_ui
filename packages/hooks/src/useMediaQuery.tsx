@@ -21,7 +21,6 @@ const MediaQueryProvider = ({
 
     const mediaList = mediaQueryStrList.map(window.matchMedia);
 
-    console.log(mediaList);
     // 首次判断
     if (matchList.every((match) => match === false)) {
       setMatchList(mediaList.map((m) => m.matches));
