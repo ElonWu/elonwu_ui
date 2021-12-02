@@ -10,7 +10,13 @@ import { Chart as G2Chart } from '@antv/g2';
 
 // utils
 import { isValidArray, isFunction, isArray } from '@elonwu/utils';
-import { colors10, registerChartTheme, colors } from './theme';
+import {
+  colors10,
+  registerChartTheme,
+  colors,
+  darkTooltip,
+  tooltip,
+} from './theme';
 
 export interface ChartEvents {
   [key: string]: (e: any) => void;
@@ -194,23 +200,7 @@ const useChartUpdate = ({
     if (!chart) return;
 
     const onUpdate = async () => {
-      chart.tooltip({
-        showTitle: true,
-        showMarkers: false,
-        shared: true,
-        showCrosshairs: true,
-        crosshairs: {
-          type: 'xy',
-          follow: false,
-          line: {
-            style: {
-              opacity: 0.5,
-              stroke: theme === 'dark' ? colors.gray[50] : colors10[0],
-              lineDash: [6, 6, 6],
-            },
-          },
-        },
-      });
+      chart.tooltip((theme === 'dark' ? darkTooltip : tooltip) as any);
 
       // 预设的图表配置， 如 LineEnhance
       // @ts-ignore

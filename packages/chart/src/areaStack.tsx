@@ -5,6 +5,8 @@ export const AreaStack = React.forwardRef(
   ({ chartKey, ...props }: ChartProps, ref) => {
     // 渲染配置
     const configChart = useCallback<ChartRenderer>(({ chart, source }) => {
+      chart.clear();
+
       chart.data(source);
 
       // 绘制堆叠面积图

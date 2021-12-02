@@ -229,8 +229,43 @@ export const darkLegend = {
   itemName: { spacing: 8, style: { ...darkTextStyle, lineHeight: 1.5 } },
 };
 
-export const tooltip = {};
-export const darkTooltip = {};
+export const tooltip = {
+  showTitle: true,
+  showMarkers: false,
+  follow: true,
+  shared: true,
+  showCrosshairs: true,
+  crosshairs: {
+    type: 'xy',
+    follow: false,
+    line: {
+      style: {
+        opacity: 0.5,
+        stroke: colors10[0],
+        lineDash: [6, 6, 6],
+      },
+    },
+  },
+};
+
+export const darkTooltip = {
+  showTitle: true,
+  showMarkers: false,
+  follow: true,
+  shared: true,
+  showCrosshairs: true,
+  crosshairs: {
+    type: 'xy',
+    follow: false,
+    line: {
+      style: {
+        opacity: 0.5,
+        stroke: colors.gray[50],
+        lineDash: [6, 6, 6],
+      },
+    },
+  },
+};
 
 export const annotation = {};
 export const darkAnnotation = {};

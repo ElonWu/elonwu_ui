@@ -6,25 +6,10 @@ export const LineGroup = React.forwardRef(
   ({ chartKey, ...props }: ChartProps, ref) => {
     // 渲染配置
     const configChart = useCallback<ChartRenderer>(({ chart, source }) => {
+      chart.clear();
+
       chart.data(source);
 
-      chart.tooltip({
-        showTitle: true,
-        showMarkers: false,
-        shared: true,
-        showCrosshairs: true,
-        crosshairs: {
-          type: 'xy',
-          follow: true,
-          line: {
-            style: {
-              opacity: 0.5,
-              stroke: colors10[0],
-              lineDash: [6, 6, 6],
-            },
-          },
-        },
-      });
       // 绘制多个折线图
       chart.line().position('x*y').color('z').size(3).shape('smooth');
       // 绘制点图
