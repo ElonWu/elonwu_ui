@@ -18,7 +18,7 @@ export const LineEnhance = React.forwardRef(
         .position('x*y')
         .tooltip(false) // 点图和线图不显示 tooltip
         .shape('smooth')
-        .size(3)
+        .size(5)
         .style({
           lineCap: 'round',
           lineJoin: 'round',
@@ -40,7 +40,7 @@ export const LineEnhance = React.forwardRef(
         .point()
         .position('x*y')
         .tooltip(false) // 点图和线图不显示 tooltip
-        .size(2);
+        .size(3);
 
       chart.legend({
         position: 'bottom',

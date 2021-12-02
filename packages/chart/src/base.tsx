@@ -46,8 +46,9 @@ export interface ChartProps {
   setConfig?: ChartRenderer;
 
   events?: ChartEvents;
-  width?: number;
+  width?: number | string;
   height?: number;
+
   dataMarkers?: DataMarker[];
 
   theme?: 'light' | 'dark';
@@ -134,6 +135,7 @@ const useChart = ({
   chartKey,
   events = {},
   dataSource,
+  theme,
   ...rest
 }: UseChartProps) => {
   // 图表实例
@@ -152,7 +154,12 @@ const useChart = ({
       height: 420,
       ...rest,
     });
+    // 初始化配置
+    chart.tooltip((theme === 'dark' ? darkTooltip : tooltip) as any);
+
     chartRef.current = chart;
+
+    return () => chart.destroy();
   }, []);
 
   // 事件绑定
@@ -200,8 +207,6 @@ const useChartUpdate = ({
     if (!chart) return;
 
     const onUpdate = async () => {
-      chart.tooltip((theme === 'dark' ? darkTooltip : tooltip) as any);
-
       // 预设的图表配置， 如 LineEnhance
       // @ts-ignore
       if (isFunction(configChart)) await configChart({ chart, source });
@@ -239,7 +244,8 @@ export const Chart = React.forwardRef(
       theme = 'light',
 
       events = {},
-      height = 320,
+      height = 420,
+      width = '100%',
     }: ChartProps,
     ref,
   ) => {
@@ -283,10 +289,11 @@ export const Chart = React.forwardRef(
         id={`ElonChart-${chartKey}`}
         ref={ref as Ref<HTMLDivElement>}
         style={{
-          display: 'grid',
-          placeContent: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width,
           height,
-          // opacity: empty ? 0 : 1,
         }}
       />
     );
